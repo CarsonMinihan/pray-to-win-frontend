@@ -1,0 +1,38 @@
+.nav {
+    height: auto;
+    margin-bottom: 20px;
+  }
+
+  
+  .logo > h1 > img {
+    height: 85px;
+    padding-right: 5px;
+  }
+  
+h1 {
+    color: white;
+    font-family: Poetsen;
+    margin-left: 0;
+  }
+
+
+  .buttons {
+      margin: auto;
+  }
+
+  .btn {
+      width: 100px;
+      margin-left: 10px;
+      margin-right: 10px;
+      
+  }
+
+  @media (min-width:768px) {
+    .btn {
+      float: right;
+    }
+    h1 {
+      text-align: left;
+    }
+  }
+ 
