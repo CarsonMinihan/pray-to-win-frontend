@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CalendarView } from 'angular-calendar';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Router, NavigationStart } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,20 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  constructor(private modalService: NgbModal) {}
+
+  showHead: boolean = false;
+
+  constructor(private modalService: NgbModal, private router: Router) {
+    router.events.forEach((event) => {
+      if (event instanceof NavigationStart) {
+        if (event['url'] == '/login') {
+          this.showHead = false;
+        } else {
+          this.showHead = true;
+        }
+      }
+    });
+  }
 
   title = 'BSTFinal';
 
