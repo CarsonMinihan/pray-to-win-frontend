@@ -1,4 +1,58 @@
-p {
-    color: white;
+.logo {
+    width: 230px;
+    height: 275px;
 }
 
+.input-field {
+    width: 350px;
+    height: 41px;
+    background: #E8E5E5;
+    border-radius: 10px;
+    margin: 8px;
+}
+
+h1 {
+    font-family: 'Poetsen';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 32px;
+    align-items: center;
+    text-align: center;
+    color: #D6D8E2;
+}
+
+h3 {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    align-items: center;
+    text-align: center;
+    color: #D6D8E2;
+    margin-bottom: 25px;
+}
+.loginBtn {
+    width: 127px;
+    height: 35px;
+    background: linear-gradient(94.34deg, #CA48BE 0%, #5BB3FD 100%);
+    border-radius: 10px;
+    font-family: 'Poetsen';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    align-items: center;
+    text-align: center;
+    color: #FFFFFF;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+    margin-top: 21px;
+    margin-bottom: 21px;
+}
+.logincontainer {
+    height: 100vh;
+}
+
+@media (max-width:495px) {
+    .input-field {
+        width: 250px;
+    }
+}
