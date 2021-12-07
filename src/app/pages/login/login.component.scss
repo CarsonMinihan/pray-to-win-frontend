@@ -45,10 +45,16 @@ h3 {
     color: #FFFFFF;
     text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
     margin-top: 21px;
-    margin-bottom: 21px;
+    margin-bottom: 5px;
 }
 .logincontainer {
-    height: 100vh;
+    height: 90vh;
+    align-content: center;
+}
+.createAccount {
+    color: #5BB3FD;
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 @media (max-width:495px) {
