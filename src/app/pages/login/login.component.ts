@@ -11,5 +11,15 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  createAccount: boolean = false;
+  
+  toggleCreate() {
+    if (this.createAccount === true) {
+      this.createAccount = false;
+    }
+    else {
+      this.createAccount = true;
+    }
+    // console.log(this.createAccount);
+  }
 }
