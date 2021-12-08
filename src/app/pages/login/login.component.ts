@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-login',
@@ -6,12 +8,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  closeResult = '';
 
-  constructor() { }
+  createAccount: boolean = false;
+
+  loginForm = new FormGroup({
+    username: new FormControl(),
+    password: new FormControl(),
+    confirmPass: new FormControl(),
+  }); 
+
+  constructor(private modalService: NgbModal) { 
+
+  }
 
   ngOnInit(): void {
   }
-  createAccount: boolean = false;
   
   toggleCreate() {
     if (this.createAccount === true) {
@@ -20,6 +32,21 @@ export class LoginComponent implements OnInit {
     else {
       this.createAccount = true;
     }
-    // console.log(this.createAccount);
   }
+
+  signUpSubmit(): void{
+    if(this.loginForm.get('password').value === this.loginForm.get('confirmPass').value) {
+      console.log("Name: " + this.loginForm.get('username').value);
+      console.log("Pass: " + this.loginForm.get('password').value);
+    }
+    else {
+      console.log("Your passwords must match!");
+    }
+  }
+
+  loginSubmit(): void{
+    console.log("Name: " + this.loginForm.get('username').value);
+    console.log("Pass: " + this.loginForm.get('password').value);
+  }
+
 }
