@@ -16,6 +16,8 @@ import { DailyMoodChangesComponent } from './pages/daily-mood-changes/daily-mood
 import { JournalComponent } from './pages/journal/journal.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { AuthGuard } from './services/authservices/auth.guard';
+import { AuthguardService } from './services/authservices/authguard.service';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,10 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     BrowserAnimationsModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [
+    AuthGuard,
+    AuthguardService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

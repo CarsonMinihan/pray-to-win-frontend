@@ -10,18 +10,21 @@ import { Router, NavigationStart } from '@angular/router';
 })
 export class AppComponent implements OnInit {
 
-  showHead: boolean = false;
+  showHeader: boolean = false;
 
   constructor(private modalService: NgbModal, private router: Router) {
-    router.events.forEach((event) => {
-      if (event instanceof NavigationStart) {
-        if (event['url'] == '/login') {
-          this.showHead = false;
-        } else {
-          this.showHead = true;
-        }
-      }
-    });
+    // router.events.forEach((event) => {
+    //   if (event instanceof NavigationStart) {
+    //     if (event['url'] == '/login' || event['url'] == '/') {
+    //       this.showHeader = false;
+    //     } else {
+    //       this.showHeader = true;
+    //     }
+    //   }
+    // });
+  }
+  OnInit(): void {
+    
   }
 
   title = 'BSTFinal';
