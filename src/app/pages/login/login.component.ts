@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
-import { NavbarService } from 'src/app/services/navbar.service';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { NavbarService } from 'src/app/shared/services/navbar.service';
+import { UserService } from 'src/app/shared/services/user.service';
+import { NewUser } from 'src/app/shared/models/new-user.model';
+import { ReturningUser } from 'src/app/shared/models/returning-user.model';
 
 @Component({
   selector: 'app-login',
@@ -14,18 +17,16 @@ export class LoginComponent implements OnInit {
 
   createAccount: boolean = false;
 
-  loginForm = new FormGroup({
-    username: new FormControl(),
-    password: new FormControl(),
-    confirmPass: new FormControl(),
-  }); 
+  newUser: NewUser = new NewUser();
 
-  constructor(private modalService: NgbModal, private router: Router, public nav: NavbarService) { 
+  user: ReturningUser = new ReturningUser();
+
+  constructor(private modalService: NgbModal, private router: Router, public nav: NavbarService, public myUserService: UserService) { 
 
   }
 
   //this is just for testing
-  user='1';
+  userToken='1';
 
   ngOnInit(): void {
     this.nav.hide();
@@ -40,21 +41,22 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  signUpSubmit(): void{
-    if(this.loginForm.get('password').value === this.loginForm.get('confirmPass').value) {
-      console.log("Name: " + this.loginForm.get('username').value);
-      console.log("Pass: " + this.loginForm.get('password').value);
-    }
-    else {
-      console.log("Your passwords must match!");
-    }
+  signUpSubmit(){
+    // if(this.loginForm.get('password').value === this.loginForm.get('confirmPass').value) {
+    //   // console.log("Name: " + this.loginForm.get('username').value);
+    //   // console.log("Pass: " + this.loginForm.get('password').value);
+    //   this.myUserService.createUser(this.newUser);
+    // }
+    // else {
+    //   console.log("Your passwords must match!");
+    // }
+    this.myUserService.createUser(this.newUser);
   }
 
   loginSubmit(): void{
-    console.log("Name: " + this.loginForm.get('username').value);
-    console.log("Pass: " + this.loginForm.get('password').value);
+    this.myUserService.loginUser(this.user);
 
-    localStorage.setItem('SeesionUser',this.user)
+    localStorage.setItem('SeesionUser',this.userToken)
     this.router.navigate(['/journal']);
   }
 

@@ -4,7 +4,7 @@ import { CalendarComponent } from './pages/calendar/calendar.component';
 import { DailyMoodChangesComponent } from './pages/daily-mood-changes/daily-mood-changes.component';
 import { JournalComponent } from './pages/journal/journal.component';
 import { LoginComponent } from './pages/login/login.component';
-import { AuthGuard } from './services/authservices/auth.guard';
+import { AuthGuard } from './shared/services/authservices/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },

@@ -16,8 +16,8 @@ import { DailyMoodChangesComponent } from './pages/daily-mood-changes/daily-mood
 import { JournalComponent } from './pages/journal/journal.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { AuthGuard } from './services/authservices/auth.guard';
-import { AuthguardService } from './services/authservices/authguard.service';
+import { AuthGuard } from './shared/services/authservices/auth.guard';
+import { AuthguardService } from './shared/services/authservices/authguard.service';
 
 @NgModule({
   declarations: [

@@ -9,32 +9,38 @@
         <h1>Welcome to Mood Ringer</h1>
         <h3>Please Login or Create Account</h3>
         <div class="row">
-            <form *ngIf="createAccount" [formGroup]="loginForm" (ngSubmit)="signUpSubmit()">
+            <form *ngIf="createAccount" (ngSubmit)="signUpSubmit()">
                 <div class="col-sm-12">
-                    <input class="input-field" type="text" id="username" formControlName="username" placeholder="Username">
+                    <input class="input-field"  name="name" [(ngModel)]='newUser.name' placeholder="Full Name">
                 </div>
                 <div class="col-sm-12">
-                    <input class="input-field" type="text" id="password" formControlName="password" placeholder="Password">
+                    <input class="input-field"  name="username" [(ngModel)]='newUser.username' placeholder="Username">
                 </div>
-                <div class="col-sm-12" *ngIf="createAccount">
-                    <input class="input-field" type="text" id="password" formControlName="confirmPass" placeholder="Confirm Password">
+                <div class="col-sm-12">
+                    <input class="input-field"  name="email" [(ngModel)]='newUser.email' placeholder="Email">
+                </div>
+                <div class="col-sm-12">
+                    <input class="input-field"  name="password" [(ngModel)]='newUser.password'  placeholder="Password">
+                </div>
+                <div class="col-sm-12">
+                    <input class="input-field"  id="confirmpassword"  placeholder="Confirm Password">
                 </div>
 
 
                 <div class="col-sm-12">
-                    <button class="loginBtn">Create</button>
+                    <button class="loginBtn" type="submit">Create</button>
                 </div>
                 <div class="createAccount">
                     <p (click)="toggleCreate()">Already Have Account</p>
                 </div>
             </form>
 
-            <form *ngIf="createAccount === false" [formGroup]="loginForm" (ngSubmit)="loginSubmit()">
+            <form *ngIf="createAccount === false" (ngSubmit)="loginSubmit()">
                 <div class="col-sm-12">
-                    <input class="input-field" type="text" id="username" formControlName="username" placeholder="Username">
+                    <input class="input-field" name="username" [(ngModel)]='user.username' placeholder="Username">
                 </div>
                 <div class="col-sm-12">
-                    <input class="input-field" type="text" id="password" formControlName="password" placeholder="Password">
+                    <input class="input-field" name="password" [(ngModel)]='user.password' placeholder="Password">
                 </div>
 
 

@@ -22,7 +22,7 @@ import {
   CalendarEventTimesChangedEvent,
   CalendarView,
 } from 'angular-calendar';
-import { NavbarService } from 'src/app/services/navbar.service';
+import { NavbarService } from 'src/app/shared/services/navbar.service';
 
 const colors: any = {
   red: {
