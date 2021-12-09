@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CalendarComponent } from './pages/calendar/calendar.component';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
@@ -16,6 +16,8 @@ import { DailyMoodChangesComponent } from './pages/daily-mood-changes/daily-mood
 import { JournalComponent } from './pages/journal/journal.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { AuthGuard } from './shared/services/authservices/auth.guard';
+import { AuthguardService } from './shared/services/authservices/authguard.service';
 
 @NgModule({
   declarations: [
@@ -39,8 +41,12 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     FlatpickrModule.forRoot(),
     NgbModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [
+    AuthGuard,
+    AuthguardService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
