@@ -10,7 +10,7 @@ import { ReturningUser } from 'src/app/shared/models/returning-user.model';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
   closeResult = '';
@@ -21,27 +21,25 @@ export class LoginComponent implements OnInit {
 
   user: ReturningUser = new ReturningUser();
 
-  constructor(private modalService: NgbModal, private router: Router, public nav: NavbarService, public myUserService: UserService) { 
-
-  }
+  constructor(
+    private modalService: NgbModal,
+    private router: Router,
+    public nav: NavbarService,
+    public myUserService: UserService
+  ) {}
 
   //this is just for testing
-  userToken='1';
+  userToken = '1';
 
   ngOnInit(): void {
-    this.nav.hide();
-  }
-  
-  toggleCreate() {
-    if (this.createAccount === true) {
-      this.createAccount = false;
-    }
-    else {
-      this.createAccount = true;
-    }
+    // this.nav.hide();
   }
 
-  signUpSubmit(){
+  toggleCreate() {
+    this.createAccount = !this.createAccount;
+  }
+
+  signUpSubmit() {
     // if(this.loginForm.get('password').value === this.loginForm.get('confirmPass').value) {
     //   // console.log("Name: " + this.loginForm.get('username').value);
     //   // console.log("Pass: " + this.loginForm.get('password').value);
@@ -53,11 +51,10 @@ export class LoginComponent implements OnInit {
     this.myUserService.createUser(this.newUser);
   }
 
-  loginSubmit(): void{
+  loginSubmit(): void {
     this.myUserService.loginUser(this.user);
 
-    localStorage.setItem('SeesionUser',this.userToken)
+    localStorage.setItem('SeesionUser', this.userToken);
     this.router.navigate(['/journal']);
   }
-
 }

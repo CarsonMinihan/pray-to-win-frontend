@@ -1,6 +1,8 @@
 <div class="MainContainer">
   <div class="col align-items-center">
-    <app-navbar></app-navbar>
+    <app-navbar *ngIf="nav.visible"></app-navbar>
+    {{ nav.visible }}
+    <button (click)="toggleNav()">Toggle</button>
     <div class="componentContainer">
       <router-outlet></router-outlet>
     </div>

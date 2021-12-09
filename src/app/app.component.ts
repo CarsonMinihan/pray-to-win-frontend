@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CalendarView } from 'angular-calendar';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router, NavigationStart } from '@angular/router';
+import { NavbarService } from './shared/services/navbar.service';
 
 @Component({
   selector: 'app-root',
@@ -9,10 +10,13 @@ import { Router, NavigationStart } from '@angular/router';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-
   showHeader: boolean = false;
 
-  constructor(private modalService: NgbModal, private router: Router) {
+  constructor(
+    private modalService: NgbModal,
+    private router: Router,
+    public nav: NavbarService
+  ) {
     // router.events.forEach((event) => {
     //   if (event instanceof NavigationStart) {
     //     if (event['url'] == '/login' || event['url'] == '/') {
@@ -23,9 +27,7 @@ export class AppComponent implements OnInit {
     //   }
     // });
   }
-  OnInit(): void {
-    
-  }
+  OnInit(): void {}
 
   title = 'BSTFinal';
 
@@ -62,6 +64,10 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     console.log('Init Loaded');
+  }
+
+  toggleNav() {
+    this.nav.toggle();
   }
 
   // Calendar Events
