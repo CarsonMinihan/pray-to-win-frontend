@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
@@ -16,10 +16,16 @@ export class LoginComponent implements OnInit {
   closeResult = '';
 
   createAccount: boolean = false;
+  matchPassword: boolean = false;
+  emptyfield: boolean = false;
 
   newUser: NewUser = new NewUser();
 
   user: ReturningUser = new ReturningUser();
+
+  confirmpassword: string;
+
+  // @ViewChild('confirmpassword', {static: true}) confirmpassword: ElementRef;
 
   constructor(
     private modalService: NgbModal,
@@ -27,9 +33,6 @@ export class LoginComponent implements OnInit {
     public nav: UiService,
     public myUserService: UserService
   ) {}
-
-  //this is just for testing
-  userToken = '1';
 
   ngOnInit(): void {
     // this.nav.hide();
@@ -40,21 +43,34 @@ export class LoginComponent implements OnInit {
   }
 
   signUpSubmit() {
-    // if(this.loginForm.get('password').value === this.loginForm.get('confirmPass').value) {
-    //   // console.log("Name: " + this.loginForm.get('username').value);
-    //   // console.log("Pass: " + this.loginForm.get('password').value);
-    //   this.myUserService.createUser(this.newUser);
-    // }
-    // else {
-    //   console.log("Your passwords must match!");
-    // }
-    this.myUserService.createUser(this.newUser);
-  }
+    if(this.newUser.email && this.newUser.name && this.newUser.password && this.newUser.username){
+      this.emptyfield = false;
+      if (this.newUser.password === this.confirmpassword) {
+        this.myUserService.createUser(this.newUser).subscribe ((res: {}) => {
+        console.log(res)
+        })
+        this.matchPassword = false;
+      }
+      else {
+        this.matchPassword = true;
+      };
+      }
+      else {
+      this.emptyfield = true;
+      };
+    };
+    
+
+    
+  
 
   loginSubmit(): void {
-    this.myUserService.loginUser(this.user);
-
-    localStorage.setItem('SeesionUser', this.userToken);
-    this.router.navigate(['/journal']);
+    this.myUserService.loginUser(this.user).subscribe ((res) => {
+      console.log(res);
+      if (res.token) {
+        localStorage.setItem('UserToken', res.token);
+        this.router.navigate(['/journal']);
+      }
+    });
   }
 }

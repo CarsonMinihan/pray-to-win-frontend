@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { UiService } from 'src/app/shared/services/ui.service';
 
 @Component({
@@ -8,9 +9,16 @@ import { UiService } from 'src/app/shared/services/ui.service';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(public nav: UiService) { }
+  constructor(public nav: UiService, private router: Router,) { }
 
   ngOnInit(): void {
+  }
+  logout(){
+    //
+    //Add Logout Function to backend
+    //
+    localStorage.clear();
+    location.reload();
   }
 
 }
