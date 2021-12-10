@@ -5,6 +5,7 @@
         <div class="row">
             <form *ngIf="createAccount" (ngSubmit)="signUpSubmit()">
                 <div class="col-sm-12">
+                    <p style="color: red;" *ngIf="emptyfield">All fields are required</p>
                     <input class="input-field"  name="name" [(ngModel)]='newUser.name' placeholder="Full Name">
                 </div>
                 <div class="col-sm-12">
@@ -18,8 +19,7 @@
                 </div>
                 <div class="col-sm-12">
                     <input class="input-field" name="confirmPassword" [(ngModel)]='confirmpassword'  placeholder="Confirm Password"><br>
-                    <p style="color: red;" *ngIf="matchPassword">Passwords must match</p><br>
-                    <p style="color: red;" *ngIf="emptyfield">All fields are required</p><br>
+                    <p style="color: red;" *ngIf="matchPassword">Passwords must match</p>
                 </div>
 
 
