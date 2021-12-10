@@ -22,7 +22,7 @@ import {
   CalendarEventTimesChangedEvent,
   CalendarView,
 } from 'angular-calendar';
-import { NavbarService } from 'src/app/shared/services/navbar.service';
+import { UiService } from 'src/app/shared/services/ui.service';
 
 const colors: any = {
   red: {
@@ -159,7 +159,7 @@ export class CalendarComponent {
 
   activeDayIsOpen: boolean = true;
 
-  constructor(private modal: NgbModal, public nav: NavbarService) {}
+  constructor(private modal: NgbModal, public nav: UiService) {}
 
   ngOnInit(): void {
     this.nav.show();

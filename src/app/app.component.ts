@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CalendarView } from 'angular-calendar';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router, NavigationStart } from '@angular/router';
-import { NavbarService } from './shared/services/navbar.service';
+import { UiService } from './shared/services/ui.service';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
   constructor(
     private modalService: NgbModal,
     private router: Router,
-    public nav: NavbarService
+    public nav: UiService
   ) {
     // router.events.forEach((event) => {
     //   if (event instanceof NavigationStart) {
