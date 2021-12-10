@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavbarService } from 'src/app/shared/services/navbar.service';
+import { UiService } from 'src/app/shared/services/ui.service';
 
 @Component({
   selector: 'app-daily-mood-changes',
@@ -8,7 +8,7 @@ import { NavbarService } from 'src/app/shared/services/navbar.service';
 })
 export class DailyMoodChangesComponent implements OnInit {
 
-  constructor(public nav: NavbarService) { }
+  constructor(public nav: UiService) { }
 
   ngOnInit(): void {
     this.nav.show();

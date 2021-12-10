@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { NavbarService } from 'src/app/shared/services/navbar.service';
+import { UiService } from 'src/app/shared/services/ui.service';
 import { UserService } from 'src/app/shared/services/user.service';
 import { NewUser } from 'src/app/shared/models/new-user.model';
 import { ReturningUser } from 'src/app/shared/models/returning-user.model';
@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private modalService: NgbModal,
     private router: Router,
-    public nav: NavbarService,
+    public nav: UiService,
     public myUserService: UserService
   ) {}
 
