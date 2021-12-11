@@ -4,22 +4,27 @@
   <h3>Please Login or Create Account</h3>
   <div class="row">
     <div>
-      <input
+        <div class="col-sm-12">
+          <input
         [@inOutAnimation]
         class="input-field"
         name="username"
         placeholder="Username"
         [(ngModel)]="userFormData.username"
-      />
-      <input
+      />  
+        </div>
+        <div class="col-sm-12">
+          <input
         [@inOutAnimation]
         class="input-field"
         type="password"
         name="password"
         placeholder="Password"
         [(ngModel)]="userFormData.password"
-      />
-      <input
+      />  
+        </div>
+        <div class="col-sm-12">
+           <input
         *ngIf="createAccount"
         [@inOutAnimation]
         class="input-field"
@@ -27,8 +32,10 @@
         name="confirmPassword"
         placeholder="Confirm Password"
         [(ngModel)]="userFormData.confirmPassword"
-      />
-      <input
+      />  
+        </div>
+        <div class="col-sm-12">
+            <input
         *ngIf="createAccount"
         [@inOutAnimation]
         class="input-field"
@@ -36,14 +43,18 @@
         placeholder="Full Name"
         [(ngModel)]="userFormData.name"
       />
-      <input
+        </div>
+        <div class="col-sm-12">
+          <input
         *ngIf="createAccount"
         [@inOutAnimation]
         class="input-field"
         name="email"
         placeholder="Email"
         [(ngModel)]="userFormData.email"
-      />
+      />  
+        </div>
+      
     </div>
     <div class="col-sm-12" [@inOutAnimation]>
       <button class="loginBtn" type="submit" (click)="handleForm()">
