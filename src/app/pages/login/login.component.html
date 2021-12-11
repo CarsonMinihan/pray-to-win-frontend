@@ -1,51 +1,117 @@
-<div class='logincontainer'>
-        <img class="logo" src="../../../assets/images/Logo.png">
-        <h1>Welcome to Mood Ringer</h1>
-        <h3>Please Login or Create Account</h3>
-        <div class="row">
-            <form *ngIf="createAccount" (ngSubmit)="signUpSubmit()">
-                <div class="col-sm-12">
-                    <p style="color: red;" *ngIf="emptyfield">All fields are required</p>
-                    <input class="input-field"  name="name" [(ngModel)]='newUser.name' placeholder="Full Name">
-                </div>
-                <div class="col-sm-12">
-                    <input class="input-field"  name="username" [(ngModel)]='newUser.username' placeholder="Username">
-                </div>
-                <div class="col-sm-12">
-                    <input class="input-field"  name="email" [(ngModel)]='newUser.email' placeholder="Email">
-                </div>
-                <div class="col-sm-12">
-                    <input class="input-field"  name="password" [(ngModel)]='newUser.password'  placeholder="Password">
-                </div>
-                <div class="col-sm-12">
-                    <input class="input-field" name="confirmPassword" [(ngModel)]='confirmpassword'  placeholder="Confirm Password"><br>
-                    <p style="color: red;" *ngIf="matchPassword">Passwords must match</p>
-                </div>
+<div class="logincontainer">
+  <img class="logo" src="../../../assets/images/Logo.png" />
+  <h1>Welcome to Mood Ringer</h1>
+  <h3>Please Login or Create Account</h3>
+  <div class="row">
+    <div>
+      <input
+        [@inOutAnimation]
+        class="input-field"
+        name="username"
+        placeholder="Username"
+        [(ngModel)]="userFormData.username"
+      />
+      <input
+        [@inOutAnimation]
+        class="input-field"
+        type="password"
+        name="password"
+        placeholder="Password"
+        [(ngModel)]="userFormData.password"
+      />
+      <input
+        *ngIf="createAccount"
+        [@inOutAnimation]
+        class="input-field"
+        type="password"
+        name="confirmPassword"
+        placeholder="Confirm Password"
+        [(ngModel)]="userFormData.confirmPassword"
+      />
+      <input
+        *ngIf="createAccount"
+        [@inOutAnimation]
+        class="input-field"
+        name="username"
+        placeholder="Full Name"
+        [(ngModel)]="userFormData.name"
+      />
+      <input
+        *ngIf="createAccount"
+        [@inOutAnimation]
+        class="input-field"
+        name="email"
+        placeholder="Email"
+        [(ngModel)]="userFormData.email"
+      />
+    </div>
+    <div class="col-sm-12" [@inOutAnimation]>
+      <button class="loginBtn" type="submit" (click)="handleForm()">
+        {{ createAccount ? "Create" : "Login" }}
+      </button>
+    </div>
+    <div class="formToggleText">
+      <p (click)="toggleCreate()">
+        {{ createAccount ? "Back to Login" : "Create New Account" }}
+      </p>
+    </div>
+    <!-- <form #authForm="ngForm" (ngSubmit)="submitForm()">
+      <div class="col-sm-12">
+        <input
+          class="input-field"
+          name="username"
+          [(ngModel)]="userForm.username"
+          placeholder="Username"
+        />
+      </div>
 
+      <div class="col-sm-12">
+        <input
+          class="input-field"
+          name="password"
+          [(ngModel)]="userForm.password"
+          placeholder="Password"
+        />
+      </div>
+      <div class="col-sm-12" *ngIf="createAccount">
+        <input
+          class="input-field"
+          name="confirmPassword"
+          [(ngModel)]="userForm.confirmPassword"
+          placeholder="Confirm Password"
+        />
+        <p style="color: red" *ngIf="matchPassword">Passwords must match</p>
+        <p style="color: red" *ngIf="emptyfield">All fields are required</p>
+      </div>
 
-                <div class="col-sm-12">
-                    <button class="loginBtn" type="submit">Create</button>
-                </div>
-                <div class="createAccount">
-                    <p (click)="toggleCreate()">Already Have Account</p>
-                </div>
-            </form>
+      <div class="col-sm-12" *ngIf="createAccount">
+        <input
+          class="input-field"
+          name="name"
+          [(ngModel)]="userForm.fullName"
+          placeholder="Full Name"
+        />
+      </div>
 
-            <form *ngIf="createAccount === false" (ngSubmit)="loginSubmit()">
-                <div class="col-sm-12">
-                    <input class="input-field" name="username" [(ngModel)]='user.username' placeholder="Username">
-                </div>
-                <div class="col-sm-12">
-                    <input class="input-field" name="password" [(ngModel)]='user.password' placeholder="Password">
-                </div>
+      <div class="col-sm-12" *ngIf="createAccount">
+        <input
+          class="input-field"
+          name="email"
+          [(ngModel)]="userForm.email"
+          placeholder="Email"
+        />
+      </div>
 
-
-                <div class="col-sm-12">
-                    <button class="loginBtn" type="submit">Login</button>
-                </div>
-                <div class="createAccount col-sm-12">
-                    <p (click)="toggleCreate()">Create Account</p>
-                </div>
-            </form>
-        </div>
+      <div class="col-sm-12">
+        <button class="loginBtn" type="submit">
+          {{ createAccount ? "Create" : "Login" }}
+        </button>
+      </div>
+      <div class="createAccount">
+        <p (click)="toggleCreate()">
+          {{ createAccount ? "Back to Login" : "Create New Account" }}
+        </p>
+      </div>
+    </form> -->
+  </div>
 </div>

@@ -1,70 +1,72 @@
 .logo {
-    width: 230px;
-    height: 275px;
+  width: 230px;
+  height: 275px;
 }
 
 .input-field {
-    width: 350px;
-    height: 41px;
-    background: #E8E5E5;
-    border-radius: 10px;
-    margin: 8px;
+  width: 350px;
+  height: 41px;
+  background: #e8e5e5;
+  border-radius: 10px;
+  margin: 8px;
+  animation: myAnim 2s ease 0s 1 normal forwards;
 }
 
 h1 {
-    font-family: 'Poetsen';
-    font-style: normal;
-    font-weight: normal;
-    font-size: 32px;
-    align-items: center;
-    text-align: center;
-    color: #D6D8E2;
+  font-family: "Poetsen";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 32px;
+  align-items: center;
+  text-align: center;
+  color: #d6d8e2;
 }
 
 h3 {
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    align-items: center;
-    text-align: center;
-    color: #D6D8E2;
-    margin-bottom: 25px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  align-items: center;
+  text-align: center;
+  color: #d6d8e2;
+  margin-bottom: 25px;
 }
 .loginBtn {
-    width: 127px;
-    height: 35px;
-    background: linear-gradient(94.34deg, #CA48BE 0%, #5BB3FD 100%);
-    border-radius: 10px;
-    font-family: 'Poetsen';
-    font-style: normal;
-    font-weight: normal;
-    font-size: 20px;
-    align-items: center;
-    text-align: center;
-    color: #FFFFFF;
-    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
-    margin-top: 21px;
-    margin-bottom: 5px;
+  width: 127px;
+  height: 35px;
+  background: linear-gradient(94.34deg, #ca48be 0%, #5bb3fd 100%);
+  border-radius: 10px;
+  font-family: "Poetsen";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  align-items: center;
+  text-align: center;
+  color: #ffffff;
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+  margin-top: 21px;
+  margin-bottom: 5px;
 }
 .logincontainer {
-    height: auto;
-    min-height: 600px;
-    align-content: center;
+  height: auto;
+  min-height: 600px;
+  align-content: center;
 }
-.createAccount {
-    color: #5BB3FD;
-    text-decoration: underline;
-    cursor: pointer;
+.createAccount,
+.formToggleText {
+  color: #5bb3fd;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
-@media (max-width:495px) {
-    .input-field {
-        width: 250px;
-    }
+@media (max-width: 495px) {
+  .input-field {
+    width: 250px;
+  }
 }
-@media (max-width:700px) {
-    .logincontainer {
-        height: 100vh;
-    }
+@media (max-width: 700px) {
+  .logincontainer {
+    height: 100vh;
+  }
 }

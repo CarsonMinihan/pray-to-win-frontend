@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
   constructor(
     private modalService: NgbModal,
     private router: Router,
-    public nav: UiService
+    public ui: UiService
   ) {
     // router.events.forEach((event) => {
     //   if (event instanceof NavigationStart) {
@@ -32,6 +32,9 @@ export class AppComponent implements OnInit {
   title = 'BSTFinal';
 
   view: CalendarView = CalendarView.Month;
+
+  toast: boolean = false;
+  toastMessage: string = '';
 
   viewDate: Date = new Date('2021-11-25');
   freddyComponentValue: boolean = true;
@@ -67,7 +70,7 @@ export class AppComponent implements OnInit {
   }
 
   toggleNav() {
-    this.nav.toggle();
+    this.ui.toggle();
   }
 
   // Calendar Events

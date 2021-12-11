@@ -8,7 +8,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CalendarComponent } from './pages/calendar/calendar.component';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
-import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './pages/login/login.component';
@@ -18,6 +17,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AuthGuard } from './shared/services/authservices/auth.guard';
 import { AuthguardService } from './shared/services/authservices/authguard.service';
+import { ToastContainerComponent } from './components/toast-container/toast-container.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +27,7 @@ import { AuthguardService } from './shared/services/authservices/authguard.servi
     DailyMoodChangesComponent,
     JournalComponent,
     NavbarComponent,
+    ToastContainerComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,16 +38,12 @@ import { AuthguardService } from './shared/services/authservices/authguard.servi
       provide: DateAdapter,
       useFactory: adapterFactory,
     }),
-    NgbModalModule,
     FlatpickrModule.forRoot(),
     NgbModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
   ],
-  providers: [
-    AuthGuard,
-    AuthguardService,
-  ],
+  providers: [AuthGuard, AuthguardService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

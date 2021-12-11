@@ -1,10 +1,10 @@
+<app-toast-container></app-toast-container>
 <div class="MainContainer">
   <div class="col align-items-center">
-    <app-navbar *ngIf="nav.visible"></app-navbar>
-    {{ nav.visible }}
-    <button (click)="toggleNav()">Toggle</button>
+    <app-navbar *ngIf="ui.visible"></app-navbar>
     <div class="componentContainer">
       <router-outlet></router-outlet>
     </div>
   </div>
 </div>
+<div style="color: white"></div>
