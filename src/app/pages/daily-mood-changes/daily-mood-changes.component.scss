@@ -1,3 +1,45 @@
 p {
     color: white;
 }
+
+h1 {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 19px;
+    line-height: 24px;
+    align-items: center;
+    text-align: center;
+    color: #FFFFFF;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+h4 {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 17px;
+    align-items: center;
+    text-align: center;
+
+    color: #FFFFFF;
+}
+
+.mood-field {
+    height: 180px;
+}
+
+.gradient {
+    opacity: 50%;
+}
+
+.changeDetails {
+    width: 100%;
+    height: 140px;
+    background: #FFFFFF;
+    border: 0.5px solid #000000;
+    box-sizing: border-box;
+    border-radius: 20px;
+}

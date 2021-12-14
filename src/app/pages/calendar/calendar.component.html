@@ -11,7 +11,7 @@
         Back
       </button>
 
-      <h3>{{ viewDate | calendarDate: view + "ViewTitle":"en" }}</h3>
+      <h3 class="dateLabel">{{ viewDate | calendarDate: view + "ViewTitle":"en" }}</h3>
       <button
         class="mrButton"
         mwlCalendarNextView
@@ -40,7 +40,7 @@
 
 <!-- Everything you see below is just for the demo, you don't need to include it in your app -->
 
-<br /><br /><br />
+<!-- <br /><br /><br />
 
 <h3>
   Edit events
@@ -125,7 +125,7 @@
       </tr>
     </tbody>
   </table>
-</div>
+</div> -->
 
 <ng-template #modalContent let-modal let-close="close">
   <div class="modal-header">
