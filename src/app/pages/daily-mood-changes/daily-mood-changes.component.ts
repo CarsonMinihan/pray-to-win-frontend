@@ -7,6 +7,7 @@ import { UiService } from 'src/app/shared/services/ui.service';
   styleUrls: ['./daily-mood-changes.component.scss']
 })
 export class DailyMoodChangesComponent implements OnInit {
+  addChange: boolean;
 
   constructor(public nav: UiService) { }
 

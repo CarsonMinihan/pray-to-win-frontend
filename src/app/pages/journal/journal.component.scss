@@ -59,15 +59,21 @@ h1 {
     float: left;
 }
 
+//
+//adjustments to bootstrap
+//
 .col-3 {
     padding-right: 0;
 }
-
 @media (min-width:1200px) {
     .col-9 {
         padding-left: 0;
     }
 }
+//
+//
+
+
 @media (max-width: 1200px) and (min-width: 992px) {
     p {
         font-size: 11px;

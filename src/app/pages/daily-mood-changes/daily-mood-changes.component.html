@@ -1,1 +1,105 @@
-<p>daily-mood-changes works!</p>
+<div class="row">
+    <div class="col-lg-6 col-12 mood-field">
+        <div class="row">
+            <h1 class="col-12">What is your mood?</h1>
+            <div class="col-4">
+                <h4>Good</h4>
+                <input type="radio" name="mood">
+            </div>
+
+            <div class="col-4">
+                <h4>Neutral</h4>
+                <input type="radio" name="mood">
+            </div>
+
+            <div class="col-4">
+                <h4>Bad</h4>
+                <input type="radio" name="mood">
+            </div>  
+        </div>
+
+    </div>
+
+    <div class="col-lg-6 col-12 mood-field">
+        <div class="row">
+            <h1 class="col-12">Did you make any changes?</h1>
+            <div class="col-6">
+                <h4>yes</h4>
+                <input 
+                type="radio" 
+                name="change"
+                [value]="true" 
+                [(ngModel)]="addChange">
+            </div>
+
+            <div class="col-6">
+                <h4>No</h4>
+                <input 
+                type="radio" 
+                name="change"
+                [value]="false" 
+                [(ngModel)]="addChange"
+                checked="checked">
+            </div> 
+        </div>
+
+    </div>
+</div>
+
+
+
+
+<div class="row" [class.gradient]="!addChange">
+    <div class="col-lg-6 col-12 mood-field">
+        <div class="row">
+            <h1 class="col-12">Type of change</h1>
+            <div class="col-4">
+                <h4>Diet</h4>
+                <input type="radio" name="changeType">
+            </div>
+
+            <div class="col-4">
+                <h4>Routine</h4>
+                <input type="radio" name="changeType">
+            </div>
+
+            <div class="col-4">
+                <h4>Exercise</h4>
+                <input type="radio" name="changeType">
+            </div>
+            <div class="col-4">
+                <h4>Sleep</h4>
+                <input type="radio" name="changeType">
+            </div>
+
+            <div class="col-4">
+                <h4>Hygiene</h4>
+                <input type="radio" name="changeType">
+            </div>
+
+            <div class="col-4">
+                <h4>Social</h4>
+                <input type="radio" name="changeType">
+            </div> 
+
+            <div class="col-4">
+                <h4>Other</h4>
+                <input type="radio" name="changeType">
+            </div> 
+        </div>
+
+    </div>
+
+    <div class="col-lg-6 col-12 mood-field">
+        <div class="row">
+            <h1 class="col-12">Extra details</h1>
+            <div class="col-12">
+                <input 
+                type="text" 
+                name="changeDetails"
+                class="changeDetails">
+            </div>
+        </div>
+
+    </div>
+</div>
