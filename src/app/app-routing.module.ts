@@ -7,7 +7,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { AuthGuard } from './shared/services/authservices/auth.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'journal', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'calendar', component: CalendarComponent, canActivate: [AuthGuard]},
   { path: 'journal', component: JournalComponent, canActivate: [AuthGuard]},

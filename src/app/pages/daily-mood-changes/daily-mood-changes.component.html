@@ -4,17 +4,17 @@
             <h1 class="col-12">What is your mood?</h1>
             <div class="col-4">
                 <h4>Good</h4>
-                <input type="radio" name="mood" value='2' [(ngModel)]="moodFormData.mood">
+                <input type="radio" name="mood" value='2' [(ngModel)]="mood">
             </div>
 
             <div class="col-4">
                 <h4>Neutral</h4>
-                <input type="radio" name="mood" value='1' [(ngModel)]="moodFormData.mood">
+                <input type="radio" name="mood" value='1' [(ngModel)]="mood">
             </div>
 
             <div class="col-4">
                 <h4>Bad</h4>
-                <input type="radio" name="mood" value='0' [(ngModel)]="moodFormData.mood">
+                <input type="radio" name="mood" value='0' [(ngModel)]="mood">
             </div>  
         </div>
 
@@ -58,7 +58,7 @@
                 type="radio" 
                 name="changeType"
                 value="0"
-                [(ngModel)]="moodFormData.makeChanges"
+                [(ngModel)]="makeChanges"
                 [disabled]="!moodFormData.changes">
             </div>
 
@@ -68,7 +68,7 @@
                 type="radio" 
                 name="changeType"
                 value="1"
-                [(ngModel)]="moodFormData.makeChanges"
+                [(ngModel)]="makeChanges"
                 [disabled]="!moodFormData.changes">
             </div>
 
@@ -78,7 +78,7 @@
                 type="radio" 
                 name="changeType"
                 value="2"
-                [(ngModel)]="moodFormData.makeChanges"
+                [(ngModel)]="makeChanges"
                 [disabled]="!moodFormData.changes">
             </div>
             <div class="col-4">
@@ -87,7 +87,7 @@
                 type="radio" 
                 name="changeType"
                 value="3"
-                [(ngModel)]="moodFormData.makeChanges"
+                [(ngModel)]="makeChanges"
                 [disabled]="!moodFormData.changes">
             </div>
 
@@ -97,7 +97,7 @@
                 type="radio" 
                 name="changeType"
                 value="4"
-                [(ngModel)]="moodFormData.makeChanges"
+                [(ngModel)]="makeChanges"
                 [disabled]="!moodFormData.changes">
             </div>
 
@@ -107,7 +107,7 @@
                 type="radio" 
                 name="changeType"
                 value="5"
-                [(ngModel)]="moodFormData.makeChanges"
+                [(ngModel)]="makeChanges"
                 [disabled]="!moodFormData.changes">
             </div> 
 
@@ -117,7 +117,7 @@
                 type="radio" 
                 name="changeType"
                 value="6"
-                [(ngModel)]="moodFormData.makeChanges"
+                [(ngModel)]="makeChanges"
                 [disabled]="!moodFormData.changes">
             </div> 
         </div>
@@ -128,7 +128,10 @@
         <div class="row">
             <h1 class="col-12">Extra details</h1>
             <div class="col-12">
-                <textarea class="changeDetails" [disabled]="!moodFormData.changes"></textarea>
+                <textarea 
+                class="changeDetails" 
+                [disabled]="!moodFormData.changes" 
+                [(ngModel)]="moodFormData.details"></textarea>
             </div>
         </div>
 

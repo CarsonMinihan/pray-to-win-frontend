@@ -1,9 +1,8 @@
 export class Mood {
     constructor(
-        public userId: number,
-        public mood: string,
+        public mood: number,
         public changes: boolean,
-        public makeChanges?: string,
+        public makeChanges?: number,
         public details?: string
       ) {}
 }
