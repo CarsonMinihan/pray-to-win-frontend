@@ -13,5 +13,4 @@ export class JournalComponent implements OnInit {
   ngOnInit(): void {
     this.nav.show();
   }
-  userToken = localStorage.getItem("UserToken");
 }
