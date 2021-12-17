@@ -1,8 +1,13 @@
 export class Mood {
-    constructor(
-        public mood: number,
-        public changes: boolean,
-        public makeChanges?: number,
-        public details?: string
-      ) {}
+
+  mood: number;
+  changes: boolean;
+  date: number;
+  makeChanges?: number;
+  details?: string;
+
+}
+
+export class MoodObjectFRBK extends Mood {
+  id: string;
 }
