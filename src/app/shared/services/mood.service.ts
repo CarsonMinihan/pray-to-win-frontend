@@ -18,22 +18,22 @@ export class MoodService {
     }),
   };
 
-  // createMood(newMood: Mood): Observable<any> {
-  //   return this.myhttp.post<Mood>(
-  //     this.url + '/auth/create',
-  //     newMood,
-  //     this.httpHeader
-  //   );
-  // }
-  createMood(newMood: Mood): void {
-    console.log(
-      this.httpHeader, newMood
+  createMood(newMood: Mood): Observable<any> {
+    return this.myhttp.post<Mood>(
+      this.url + '/mood/create',
+      newMood,
+      this.httpHeader
     );
   }
+  // createMood(newMood: Mood): void {
+  //   console.log(
+  //     this.httpHeader, newMood
+  //   );
+  // }
 
   getMoods(): Observable<Mood[]> {
     return this.myhttp.get<Mood[]>(
-      this.url + '/auth/create',
+      this.url + '/mood/read',
       this.httpHeader
     )
   }

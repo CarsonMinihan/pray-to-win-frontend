@@ -9,7 +9,7 @@ import { UiService } from 'src/app/shared/services/ui.service';
   styleUrls: ['./daily-mood-changes.component.scss']
 })
 export class DailyMoodChangesComponent implements OnInit {
-  moodFormData: Mood = new Mood (1, false, 6, '');
+  moodFormData: Mood = new Mood;
   makeChanges: string = '6';
   mood: string = '1';
 
@@ -18,16 +18,24 @@ export class DailyMoodChangesComponent implements OnInit {
   ngOnInit(): void {
     this.nav.show();
   }
+  
 
   handleMoodForm() {
     this.moodFormData.mood = Number(this.mood);
+    let date = new Date();
+    this.moodFormData.date = date.getTime();
+    console.log(this.moodFormData.date);
+
+    
 
     if(this.moodFormData.changes){
       //if they add a change
 
       this.moodFormData.makeChanges = Number(this.makeChanges);
 
-      this.moodService.createMood(this.moodFormData);
+      this.moodService.createMood(this.moodFormData).subscribe((res) => {
+        console.log(res);
+      });
     }
     else if (!this.moodFormData.changes){
       //if they don't add a change
@@ -35,12 +43,14 @@ export class DailyMoodChangesComponent implements OnInit {
       this.moodFormData.details = "";
       this.moodFormData.makeChanges = 0;
 
-      this.moodService.createMood(this.moodFormData);
+      this.moodService.createMood(this.moodFormData).subscribe((res) => {
+        console.log(res);
+      });
     }
     else {
       console.log('error')
     }
-
+    console.log(this.moodFormData)
     
   }
 }
