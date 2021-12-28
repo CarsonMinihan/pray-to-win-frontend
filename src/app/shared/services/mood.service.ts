@@ -31,8 +31,8 @@ export class MoodService {
   //   );
   // }
 
-  getMoods(): Observable<Mood[]> {
-    return this.myhttp.get<Mood[]>(
+  getMoods(): Observable<any> {
+    return this.myhttp.get<any>(
       this.url + '/mood/read',
       this.httpHeader
     )
@@ -42,8 +42,47 @@ export class MoodService {
     //update Mood route
   }
 
-  deleteMood() {
-    //delete Mood route
+  deleteMood(id): Observable<any> {
+    return this.myhttp.post<string>(
+      this.url + '/mood/delete',
+      id,
+      this.httpHeader
+    );
+  }
+  getChangeType(x){
+    switch (x) {
+      case 1:
+        return "Diet";
+        break;
+
+      case 2: 
+        return "Routine";
+        break;
+
+      case 3:
+        return "Exercise";
+        break;
+
+      case 4:
+        return "Sleep";
+        break;
+
+      case 5:
+        return "Hygiene";
+        break;
+
+      case 6:
+        return "Social";
+        break;
+
+      case 7:
+        return "Other";
+        break;
+
+      default:
+        return "error";
+        break;
+    }
   }
 
 }

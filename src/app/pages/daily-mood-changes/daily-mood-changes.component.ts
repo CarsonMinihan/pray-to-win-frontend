@@ -10,7 +10,8 @@ import { UiService } from 'src/app/shared/services/ui.service';
 })
 export class DailyMoodChangesComponent implements OnInit {
   moodFormData: Mood = new Mood;
-  makeChanges: string = '6';
+  changes: boolean = false;
+  makeChanges: string = '7';
   mood: string = '1';
 
   constructor(public nav: UiService, public moodService: MoodService) { }
@@ -22,6 +23,7 @@ export class DailyMoodChangesComponent implements OnInit {
 
   handleMoodForm() {
     this.moodFormData.mood = Number(this.mood);
+    this.moodFormData.changes = this.changes;
     let date = new Date();
     this.moodFormData.date = date.getTime();
     console.log(this.moodFormData.date);
@@ -33,19 +35,19 @@ export class DailyMoodChangesComponent implements OnInit {
 
       this.moodFormData.makeChanges = Number(this.makeChanges);
 
-      this.moodService.createMood(this.moodFormData).subscribe((res) => {
-        console.log(res);
-      });
+      // this.moodService.createMood(this.moodFormData).subscribe((res) => {
+      //   console.log(res);
+      // });
     }
     else if (!this.moodFormData.changes){
       //if they don't add a change
 
       this.moodFormData.details = "";
-      this.moodFormData.makeChanges = 0;
+      this.moodFormData.makeChanges = 7;
 
-      this.moodService.createMood(this.moodFormData).subscribe((res) => {
-        console.log(res);
-      });
+      // this.moodService.createMood(this.moodFormData).subscribe((res) => {
+      //   console.log(res);
+      // });
     }
     else {
       console.log('error')
