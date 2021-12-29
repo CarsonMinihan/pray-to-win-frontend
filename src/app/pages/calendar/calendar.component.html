@@ -25,7 +25,8 @@
   </div>
 </div>
 <br />
-<div [ngSwitch]="view">
+<div [ngSwitch]="view"
+*ngIf = "eventsLoaded | async">
   <mwl-calendar-month-view
     *ngSwitchCase="CalendarView.Month"
     [viewDate]="viewDate"
@@ -33,7 +34,7 @@
     [refresh]="refresh"
     [activeDayIsOpen]="activeDayIsOpen"
     (dayClicked)="dayClicked($event.day)"
-    (eventClicked)="handleEvent('Clicked', $event.event)"
+    (eventClicked)="handleEvent($event.event)"
   >
   </mwl-calendar-month-view>
 </div>
@@ -136,17 +137,21 @@
   </div>
   <div class="modal-body">
     <div>
-      Action:
       <pre>{{ modalData?.action }}</pre>
     </div>
-    <div>
-      Event:
-      <pre>{{ modalData?.event | json }}</pre>
+    <div *ngIf="modalData?.details">
+      Details:
+      <pre>{{ modalData?.details | json }}</pre>
     </div>
   </div>
+  <div>Deleteing a mood or change will delete both the mood and the change</div>
   <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="delete()">
+      Delete
+    </button>
     <button type="button" class="btn btn-outline-secondary" (click)="close()">
       OK
     </button>
   </div>
+  
 </ng-template>
