@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Mood } from 'src/app/shared/models/mood.model';
 import { MoodService } from 'src/app/shared/services/mood.service';
 import { UiService } from 'src/app/shared/services/ui.service';
@@ -14,10 +15,10 @@ export class DailyMoodChangesComponent implements OnInit {
   makeChanges: string = '7';
   mood: string = '1';
 
-  constructor(public nav: UiService, public moodService: MoodService) { }
+  constructor(public ui: UiService, public moodService: MoodService, private router: Router) { }
 
   ngOnInit(): void {
-    this.nav.show();
+    this.ui.show();
   }
   
 
@@ -35,9 +36,11 @@ export class DailyMoodChangesComponent implements OnInit {
 
       this.moodFormData.makeChanges = Number(this.makeChanges);
 
-      // this.moodService.createMood(this.moodFormData).subscribe((res) => {
-      //   console.log(res);
-      // });
+      this.moodService.createMood(this.moodFormData).subscribe((res) => {
+        console.log(res);
+        this.ui.showToastMessage('successfully created');
+        this.router.navigate(['/calendar']);
+      });
     }
     else if (!this.moodFormData.changes){
       //if they don't add a change
@@ -45,9 +48,11 @@ export class DailyMoodChangesComponent implements OnInit {
       this.moodFormData.details = "";
       this.moodFormData.makeChanges = 7;
 
-      // this.moodService.createMood(this.moodFormData).subscribe((res) => {
-      //   console.log(res);
-      // });
+      this.moodService.createMood(this.moodFormData).subscribe((res) => {
+        console.log(res);
+        this.ui.showToastMessage('successfully created');
+        this.router.navigate(['/calendar']);
+      });
     }
     else {
       console.log('error')

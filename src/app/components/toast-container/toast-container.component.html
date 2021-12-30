@@ -2,7 +2,8 @@
   *ngIf="toast"
   [autohide]="true"
   [delay]="2200"
-  class="bg-success text-light"
+  [class]="toastColor"
+  class="text-light"
   (hidden)="toastClosed()"
 >
   {{ toastMessage }}

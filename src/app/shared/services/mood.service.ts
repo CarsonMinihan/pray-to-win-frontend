@@ -1,13 +1,14 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Mood } from '../models/mood.model';
+import { Mood, MoodArray, MoodObjectFRBK, UpdateMood } from '../models/mood.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MoodService {
   url: string = 'http://localhost:3000';
+  moodObjectFRBK: MoodObjectFRBK;
 
   constructor(private myhttp: HttpClient) { }
 
@@ -18,8 +19,8 @@ export class MoodService {
     }),
   };
 
-  createMood(newMood: Mood): Observable<any> {
-    return this.myhttp.post<Mood>(
+  createMood(newMood: Mood): Observable<MoodObjectFRBK> {
+    return this.myhttp.post<MoodObjectFRBK>(
       this.url + '/mood/create',
       newMood,
       this.httpHeader
@@ -31,21 +32,25 @@ export class MoodService {
   //   );
   // }
 
-  getMoods(): Observable<any> {
-    return this.myhttp.get<any>(
+  getMoods(): Observable<MoodArray> {
+    return this.myhttp.get<MoodArray>(
       this.url + '/mood/read',
       this.httpHeader
     )
   }
 
-  updateMood() {
-    //update Mood route
+  updateMood(updateMood: UpdateMood): Observable<MoodObjectFRBK> {
+    return this.myhttp.put<MoodObjectFRBK>(
+      this.url + '/mood/update',
+      updateMood,
+      this.httpHeader
+    );
   }
 
-  deleteMood(id): Observable<any> {
-    return this.myhttp.post<string>(
+  deleteMood(id): Observable<MoodObjectFRBK> {
+    return this.myhttp.post<MoodObjectFRBK>(
       this.url + '/mood/delete',
-      id,
+      { id },
       this.httpHeader
     );
   }
