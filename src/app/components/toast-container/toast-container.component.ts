@@ -11,6 +11,7 @@ export class ToastContainerComponent implements OnInit {
   toast: boolean;
   toastMessage: string;
   toastClass: string;
+  toastColor: string;
 
   ngOnInit(): void {
     this.ui.toast.subscribe((state) => {
@@ -18,6 +19,10 @@ export class ToastContainerComponent implements OnInit {
     });
     this.ui.toastMsg.subscribe((msg) => {
       this.toastMessage = msg;
+    });
+    this.ui.toastClr.subscribe((color) => {
+      if (color) this.toastColor = 'bg-' + color;
+      else this.toastColor = 'bg-success';
     });
   }
 

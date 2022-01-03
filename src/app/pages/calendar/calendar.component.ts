@@ -174,10 +174,10 @@ export class CalendarComponent implements OnInit {
   eventsLoaded: Promise<boolean>;
 
 
-  constructor(private modal: NgbModal, public nav: UiService, public moodService: MoodService, private router: Router) {}
+  constructor(private modal: NgbModal, public ui: UiService, public moodService: MoodService, private router: Router) {}
 
   ngOnInit(): void {
-    this.nav.show();
+    this.ui.show();
     this.moodService.getMoods().subscribe((res) => {
       let data = res.data;
       
@@ -292,8 +292,16 @@ export class CalendarComponent implements OnInit {
     console.log(this.modalData.id);
     this.moodService.deleteMood(this.modalData.id).subscribe(res => {
       console.log(res);
+      if (res.success) {
+        this.events = this.events.filter((modalData) => modalData.id !== res.data._id);
+        this.modal.dismissAll();
+        this.ui.showToastMessage('Mood Successfully Deleted', "primary");
+      }
+      else {
+        this.ui.showToastMessage(res.message, "danger");
+      }
+      
     });
-    this.router.navigate(['/calendar']);
   }
 
   setView(view: CalendarView) {

@@ -48,7 +48,7 @@
 
 
 
-<div class="row" [class.gradient]="!moodFormData.changes">
+<div class="row" [class.gradient]="!changes">
     <div class="col-lg-6 col-12 mood-field">
         <div class="row">
             <h1 class="col-12">Type of change</h1>
@@ -59,7 +59,7 @@
                 name="changeType"
                 value="1"
                 [(ngModel)]="makeChanges"
-                [disabled]="!moodFormData.changes">
+                [disabled]="!changes">
             </div>
 
             <div class="col-4">
@@ -69,7 +69,7 @@
                 name="changeType"
                 value="2"
                 [(ngModel)]="makeChanges"
-                [disabled]="!moodFormData.changes">
+                [disabled]="!changes">
             </div>
 
             <div class="col-4">
@@ -79,7 +79,7 @@
                 name="changeType"
                 value="3"
                 [(ngModel)]="makeChanges"
-                [disabled]="!moodFormData.changes">
+                [disabled]="!changes">
             </div>
             <div class="col-4">
                 <h4>Sleep</h4>
@@ -88,7 +88,7 @@
                 name="changeType"
                 value="4"
                 [(ngModel)]="makeChanges"
-                [disabled]="!moodFormData.changes">
+                [disabled]="!changes">
             </div>
 
             <div class="col-4">
@@ -98,7 +98,7 @@
                 name="changeType"
                 value="5"
                 [(ngModel)]="makeChanges"
-                [disabled]="!moodFormData.changes">
+                [disabled]="!changes">
             </div>
 
             <div class="col-4">
@@ -108,7 +108,7 @@
                 name="changeType"
                 value="6"
                 [(ngModel)]="makeChanges"
-                [disabled]="!moodFormData.changes">
+                [disabled]="!changes">
             </div> 
 
             <div class="col-4">
@@ -118,7 +118,7 @@
                 name="changeType"
                 value="7"
                 [(ngModel)]="makeChanges"
-                [disabled]="!moodFormData.changes">
+                [disabled]="!changes">
             </div> 
         </div>
 
@@ -130,7 +130,7 @@
             <div class="col-12">
                 <textarea 
                 class="changeDetails" 
-                [disabled]="!moodFormData.changes" 
+                [disabled]="!changes" 
                 [(ngModel)]="moodFormData.details"></textarea>
             </div>
         </div>

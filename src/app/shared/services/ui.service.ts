@@ -8,8 +8,11 @@ export class UiService {
   visible: boolean;
   toastVisible: boolean = false;
   toastMessage: string = '';
+  toastColor: string = '';
   toastState$ = new BehaviorSubject<boolean>(false);
   toastMessage$ = new BehaviorSubject<string>('');
+  toastColor$ = new BehaviorSubject<string>('');
+  toastClr = this.toastColor$.asObservable();
   toastMsg = this.toastMessage$.asObservable();
   toast = this.toastState$.asObservable();
 
@@ -39,8 +42,9 @@ export class UiService {
     this.toastState$.next(false);
   }
 
-  showToastMessage(message) {
+  showToastMessage(message, color?) {
     this.toastState$.next(true);
     this.toastMessage$.next(message);
+    this.toastColor$.next(color);
   }
 }

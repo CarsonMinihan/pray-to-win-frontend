@@ -72,10 +72,20 @@ export class LoginComponent implements OnInit {
         password: this.userFormData.password,
         email: this.userFormData.email,
       };
+      if (this.userFormData.password == this.userFormData.confirmPassword){
       this.myUserService.createUser(newUserData).subscribe((res: any) => {
         console.log(res);
         if (res.success) this.ui.showToastMessage(res.message);
+      },
+      (error) => {
+        this.ui.showToastMessage('make sure all fields are filled', "danger");
       });
+      
+      }
+      else{
+        this.ui.showToastMessage("Passwords don't match", "danger");
+      }
+
     } else {
       console.log('LOGGING IN');
       let userData: ReturningUser = {
@@ -116,6 +126,9 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('UserToken', res.data.token);
         this.router.navigate(['/journal']);
       }
+    },
+    (error) => {
+      this.ui.showToastMessage('Username or Password is incorrect', "danger");
     });
   }
 }
