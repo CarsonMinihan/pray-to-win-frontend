@@ -32,3 +32,27 @@ export class UpdateMood {
   details: string;
 }
 
+export class NumberOfChanges {
+  //the numbers are the type of changes
+
+  //1
+  numOfDiet: number;
+
+  //2
+  numOfRoutine: number;
+
+  //3
+  numOfExercise: number;
+
+  //4
+  numOfSleep: number;
+
+  //5
+  numOfHygiene: number;
+
+  //6
+  numOfSocial: number;
+
+  //7
+  numOfOther: number;
+}
