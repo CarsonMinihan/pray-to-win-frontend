@@ -39,6 +39,14 @@ export class MoodService {
     )
   }
 
+  getMoodsBetween(date1: Number, date2: Number): Observable<MoodArray> {
+    return this.myhttp.post<MoodArray>(
+      this.url + '/mood/rbd',
+      { date1, date2 },
+      this.httpHeader
+    )
+  }
+
   updateMood(updateMood: UpdateMood): Observable<MoodObjectFRBK> {
     return this.myhttp.put<MoodObjectFRBK>(
       this.url + '/mood/update',

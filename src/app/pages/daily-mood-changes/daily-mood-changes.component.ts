@@ -11,30 +11,27 @@ import { UiService } from 'src/app/shared/services/ui.service';
 })
 export class DailyMoodChangesComponent implements OnInit {
   moodFormData: Mood = new Mood;
-  changes: boolean = false;
-  makeChanges: string = '7';
-  mood: string = '1';
 
-  constructor(public ui: UiService, public moodService: MoodService, private router: Router) { }
+  constructor(public ui: UiService, public moodService: MoodService, private router: Router) {
+    this.moodFormData.changes = false;
+    this.moodFormData.makeChanges = 7;
+    this.moodFormData.mood = 0;
+   }
 
   ngOnInit(): void {
     this.ui.show();
   }
   
+  
 
   handleMoodForm() {
-    this.moodFormData.mood = Number(this.mood);
-    this.moodFormData.changes = this.changes;
     let date = new Date();
     this.moodFormData.date = date.getTime();
-    console.log(this.moodFormData.date);
 
     
 
     if(this.moodFormData.changes){
       //if they add a change
-
-      this.moodFormData.makeChanges = Number(this.makeChanges);
 
       this.moodService.createMood(this.moodFormData).subscribe((res) => {
         console.log(res);
