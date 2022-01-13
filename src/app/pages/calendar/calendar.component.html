@@ -4,6 +4,7 @@
       <button
         class="mrButton"
         mwlCalendarPreviousView
+        (click)="getMoodsForOneMonth()"
         [view]="view"
         [(viewDate)]="viewDate"
         (viewDateChange)="closeOpenMonthViewDay()"
@@ -15,6 +16,7 @@
       <button
         class="mrButton"
         mwlCalendarNextView
+        (click)="getMoodsForOneMonth()"
         [view]="view"
         [(viewDate)]="viewDate"
         (viewDateChange)="closeOpenMonthViewDay()"
@@ -128,29 +130,147 @@
   </table>
 </div> -->
 
+
+
 <ng-template #modalContent let-modal let-close="close">
   <div class="modal-header">
-    <h5 class="modal-title">Event action occurred</h5>
-    <button type="button" class="close" (click)="close()">
+    <h5 class="modal-title">{{ modalData?.mood }} Mood</h5>
+    <button type="button" class="close" (click)="editToFalse()"(click)="close()">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <div class="modal-body">
+  <div class="modal-body" *ngIf="!editMood">
     <div>
-      <pre>{{ modalData?.action }}</pre>
+      <h5>{{ modalData?.title }}</h5>
     </div>
     <div *ngIf="modalData?.details">
-      Details:
-      <pre>{{ modalData?.details | json }}</pre>
+      <p>{{ modalData?.details }}</p>
     </div>
   </div>
-  <div>Deleteing a mood or change will delete both the mood and the change</div>
-  <div class="modal-footer">
+  <div class="modal-body" *ngIf="editMood" >
+    <div class="row">
+      <div class="col-lg-6 col-12 mood-field">
+          <div class="row">
+              <h1 class="col-12">Mood</h1>
+              <div class="col-4">
+                  <h4>Good</h4>
+                  <input type="radio" name="mood" [value]="1" [(ngModel)]="editedObj.mood">
+              </div>
+  
+              <div class="col-4">
+                  <h4>Neutral</h4>
+                  <input type="radio" name="mood" [value]="0" [(ngModel)]="editedObj.mood">
+              </div>
+  
+              <div class="col-4">
+                  <h4>Bad</h4>
+                  <input type="radio" name="mood" [value]="-1" [(ngModel)]="editedObj.mood">
+              </div>  
+          </div>
+  
+      </div>
+    </div>
+    <div class="row" *ngIf="hasChanges">
+      <div class="col-lg-6 col-12 mood-field">
+          <div class="row">
+              <h1 class="col-12">Type of change</h1>
+              <div class="col-4">
+                  <h4>Diet</h4>
+                  <input 
+                  type="radio" 
+                  name="changeType"
+                  [value]="1"
+                  [(ngModel)]="editedObj.makeChanges">
+              </div>
+  
+              <div class="col-4">
+                  <h4>Routine</h4>
+                  <input 
+                  type="radio" 
+                  name="changeType"
+                  [value]="2"
+                  [(ngModel)]="editedObj.makeChanges">
+              </div>
+  
+              <div class="col-4">
+                  <h4>Exercise</h4>
+                  <input 
+                  type="radio" 
+                  name="changeType"
+                  [value]="3"
+                  [(ngModel)]="editedObj.makeChanges">
+              </div>
+              <div class="col-4">
+                  <h4>Sleep</h4>
+                  <input 
+                  type="radio" 
+                  name="changeType"
+                  [value]="4"
+                  [(ngModel)]="editedObj.makeChanges">
+              </div>
+  
+              <div class="col-4">
+                  <h4>Hygiene</h4>
+                  <input 
+                  type="radio" 
+                  name="changeType"
+                  [value]="5"
+                  [(ngModel)]="editedObj.makeChanges">
+              </div>
+  
+              <div class="col-4">
+                  <h4>Social</h4>
+                  <input 
+                  type="radio" 
+                  name="changeType"
+                  [value]="6"
+                  [(ngModel)]="editedObj.makeChanges">
+              </div> 
+  
+              <div class="col-4">
+                  <h4>Other</h4>
+                  <input 
+                  type="radio" 
+                  name="changeType"
+                  [value]="7"
+                  [(ngModel)]="editedObj.makeChanges">
+              </div> 
+          </div>
+  
+      </div>
+  
+      <div class="col-lg-6 col-12 mood-field">
+          <div class="row">
+              <h1 class="col-12">Extra details</h1>
+              <div class="col-12">
+                  <textarea 
+                  class="changeDetails"  
+                  [(ngModel)]="editedObj.details"></textarea>
+              </div>
+          </div>
+  
+      </div>
+  </div>
+
+  
+
+
+  </div>
+  
+  <div class="modal-footer" *ngIf="!editMood">
     <button type="button" class="btn btn-danger" (click)="delete()">
       Delete
     </button>
-    <button type="button" class="btn btn-outline-secondary" (click)="close()">
-      OK
+    <button type="button" class="btn btn-outline-warning" (click)="editChangeOrMood()">
+      Edit
+    </button>
+  </div>
+  <div class="modal-footer" *ngIf="editMood">
+    <button type="button" class="btn btn-outline-warning" (click)="saveEdit()">
+      Save
+    </button>
+    <button type="button" class="btn btn-outline-secondary" (click)="editToFalse()">
+      Cancel
     </button>
   </div>
   

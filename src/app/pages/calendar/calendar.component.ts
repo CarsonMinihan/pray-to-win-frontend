@@ -27,6 +27,8 @@ import { UiService } from 'src/app/shared/services/ui.service';
 import { MoodService } from 'src/app/shared/services/mood.service';
 import { CalendarEventActionsComponent } from 'angular-calendar/modules/common/calendar-event-actions.component';
 import { Router } from '@angular/router';
+import { MoodArray, MoodObjectWithId, UpdateMood } from 'src/app/shared/models/mood.model';
+import { stringify } from 'querystring';
 
 const colors: any = {
   red: {
@@ -40,10 +42,6 @@ const colors: any = {
   yellow: {
     primary: '#e3bc08',
     secondary: '#FDF1BA',
-  },
-  orange: {
-    primary: '#FFA500',
-    secondary: '#FFA500',
   },
   black: {
     primary: '#000000',
@@ -66,31 +64,19 @@ export class CalendarComponent implements OnInit {
 
   CalendarView = CalendarView;
 
+  editMood: boolean = false;
+  hasChanges: boolean;
+
   viewDate: Date = new Date();
 
   modalData: {
-    action: string;
+    title: string;
     details: string;
     id: string;
+    mood: string;
   };
 
-  // actions: CalendarEventAction[] = [
-  //   {
-  //     label: '<i class="fas fa-fw fa-pencil-alt"></i>',
-  //     a11yLabel: 'Edit',
-  //     onClick: ({ event }: { event: CalendarEvent }): void => {
-  //       this.handleEvent('Edited', event);
-  //     },
-  //   },
-  //   {
-  //     label: '<i class="fas fa-fw fa-trash-alt"></i>',
-  //     a11yLabel: 'Delete',
-  //     onClick: ({ event }: { event: CalendarEvent }): void => {
-  //       this.events = this.events.filter((iEvent) => iEvent !== event);
-  //       this.handleEvent('Deleted', event);
-  //     },
-  //   },
-  // ];
+  editedObj: UpdateMood = new UpdateMood;
 
   refresh: Subject<any> = new Subject();
 
@@ -101,72 +87,14 @@ export class CalendarComponent implements OnInit {
         //Calendar events is an array!!!
 
 
-
+  data: MoodObjectWithId[] = [];
 
   events: CalendarEvent[] = [
-    // {
-    //   start: subDays(startOfDay(new Date()), 1),
-    //   end: addDays(new Date(), 1),
-    //   title: 'A 3 day event',
-    //   color: colors.red,
-    //   actions: this.actions,
-    //   allDay: true,
-    //   resizable: {
-    //     beforeStart: true,
-    //     afterEnd: true,
-    //   },
-    //   draggable: true,
-    // },
     // {
     //   start: startOfDay(new Date("2021-11-24T08:00:00.000Z")),
     //   title: 'An event with no end date and you can edit the time',
     //   color: colors.yellow,
     //   actions: this.actions,
-    // },
-    // {
-    //   start: subDays(endOfMonth(new Date()), 3),
-    //   end: addDays(endOfMonth(new Date()), 3),
-    //   title: 'A long event that spans 2 months',
-    //   color: colors.blue,
-    //   allDay: true,
-    // },
-    // {
-    //   start: addHours(startOfDay(new Date()), 2),
-    //   end: addHours(new Date(), 2),
-    //   title: 'A draggable and resizable event',
-    //   color: colors.yellow,
-    //   actions: this.actions,
-    //   resizable: {
-    //     beforeStart: true,
-    //     afterEnd: true,
-    //   },
-    //   draggable: true,
-    // },
-    // {
-    //   start: new Date("2021-11-22"),
-    //   title: 'An event that I added in the code and changed color',
-    //   color: colors.customColor,
-    //   actions: this.actions,
-    // },
-    // {
-    //   start: new Date("2021-11-26"),
-    //   title: 'Test Event',
-    //   color: { primary: '#d0abb3', secondary: '#fff111' },
-    // },
-    // {
-    //   start: new Date("2021-12-1"),
-    //   title: 'Mario',
-    //   color: { primary: '#fffbb3', secondary: '#fff111' },
-    // },
-    // {
-    //   start: new Date("2021-12-8"),
-    //   title: 'potato',
-    //   color: { primary: '#d0afff', secondary: '#fff111' },
-    // },
-    // {
-    //   start: new Date('2021-11-25'),
-    //   title: 'Test Event 2',
-    //   color: { primary: '#d0afff', secondary: '#fff111' },
     // },
   ];
 
@@ -178,57 +106,245 @@ export class CalendarComponent implements OnInit {
 
   ngOnInit(): void {
     this.ui.show();
-    this.moodService.getMoods().subscribe((res) => {
-      let data = res.data;
+    // var date = new Date(this.viewDate), y = date.getFullYear(), m = date.getMonth();
+    // var firstDay = startOfDay(new Date(y, m, 1)).getTime();
+    // var lastDay = endOfDay(new Date(y, m + 1, 0)).getTime();
+
+    // this.moodService.getMoodsBetween(firstDay, lastDay).subscribe((res) => {
+    //   let resData = res.data;
       
-      for (let i = 0; i < data.length; i++) {
+      
+    //   for (let i = 0; i < resData.length; i++) {
+    //     this.data.push(resData[i]);
+    //     let calendarItem = {
+    //       start: new Date(resData[i].date),
+    //       title: "",
+    //       color: colors.customColor,
+    //       mood: "",
+    //       details: resData[i].details,
+    //       id: resData[i]._id,
+    //       changes: true
+    //     }
+
+    //     calendarItem.changes = resData[i].changes;
+
+    //     switch (resData[i].mood) {
+    //       case -1: 
+    //         calendarItem.mood = "Bad"
+    //         calendarItem.color = colors.red;
+    //         break;
+          
+    //       case 0: 
+    //         calendarItem.mood = "Neutral"
+    //         calendarItem.color = colors.yellow;
+    //         break;
+          
+    //       case 1: 
+    //         calendarItem.mood = "Good"
+    //         calendarItem.color = colors.blue;
+    //         break;
+          
+    //       default: 
+    //         calendarItem.color = colors.black;
+    //         break;
+    //     }
+
         
-        let moodItem = {
-          start: new Date(data[i].date),
+
+    //     if (resData[i].changes){
+    //       calendarItem.title = this.moodService.getChangeType(resData[i].makeChanges) + " Change";
+    //     }
+    //     else {
+    //       calendarItem.title = "No Change"
+    //     }
+
+
+    //     console.log(calendarItem);
+    //     this.events.push(calendarItem);
+
+
+    //   }
+    //   this.eventsLoaded = Promise.resolve(true);
+    // });;
+    this.moodService.getMoods().subscribe((res) => {
+      let resData = res.data;
+      
+      
+      for (let i = 0; i < resData.length; i++) {
+        this.data.push(resData[i]);
+        let calendarItem = {
+          start: new Date(resData[i].date),
           title: "",
           color: colors.customColor,
-          id: data[i]._id
+          mood: "",
+          details: resData[i].details,
+          id: resData[i]._id,
+          changes: true
         }
 
-        switch (data[i].mood) {
+        calendarItem.changes = resData[i].changes;
+
+        switch (resData[i].mood) {
           case -1: 
-            moodItem.title = "Bad mood";
-            moodItem.color = colors.red;
+            calendarItem.mood = "Bad"
+            calendarItem.color = colors.red;
             break;
           
           case 0: 
-            moodItem.title = "Neutral mood";
-            moodItem.color = colors.yellow;
+            calendarItem.mood = "Neutral"
+            calendarItem.color = colors.yellow;
             break;
           
           case 1: 
-            moodItem.title = "Good mood";
-            moodItem.color = colors.blue;
+            calendarItem.mood = "Good"
+            calendarItem.color = colors.blue;
             break;
           
           default: 
-            moodItem.title = "Error";
-            moodItem.color = colors.black;
+            calendarItem.color = colors.black;
             break;
         }
 
-        console.log(moodItem);
-        this.events.push(moodItem);
+        
 
-        if (data[i].changes){
-          let changeItem = {
-            start: new Date(data[i].date),
-            id: data[i]._id,
-            // title: "This" + " Change",
-            title: this.moodService.getChangeType(data[i].makeChanges) + " Change",
-            color: colors.orange,
-            details: data[i].details,
-          }
-          this.events.push(changeItem);
+        if (resData[i].changes){
+          calendarItem.title = this.moodService.getChangeType(resData[i].makeChanges) + " Change";
         }
+        else {
+          calendarItem.title = "No Change"
+        }
+
+
+        console.log(calendarItem);
+        this.events.push(calendarItem);
+
+
       }
       this.eventsLoaded = Promise.resolve(true);
     });;
+    // console.log(this.data);
+  }
+
+  getMoodsForOneMonth(){
+    this.data = [];
+    this.events = [];
+
+    var date = new Date(this.viewDate), y = date.getFullYear(), m = date.getMonth();
+    var firstDay = startOfDay(new Date(y, m, 1)).getTime();
+    var lastDay = endOfDay(new Date(y, m + 1, 0)).getTime();
+
+    this.moodService.getMoodsBetween(firstDay, lastDay).subscribe((res) => {
+      let resData = res.data;
+      
+      
+      for (let i = 0; i < resData.length; i++) {
+        this.data.push(resData[i]);
+        let calendarItem = {
+          start: new Date(resData[i].date),
+          title: "",
+          color: colors.customColor,
+          mood: "",
+          details: resData[i].details,
+          id: resData[i]._id,
+          changes: true
+        }
+
+        calendarItem.changes = resData[i].changes;
+
+        switch (resData[i].mood) {
+          case -1: 
+            calendarItem.mood = "Bad"
+            calendarItem.color = colors.red;
+            break;
+          
+          case 0: 
+            calendarItem.mood = "Neutral"
+            calendarItem.color = colors.yellow;
+            break;
+          
+          case 1: 
+            calendarItem.mood = "Good"
+            calendarItem.color = colors.blue;
+            break;
+          
+          default: 
+            calendarItem.color = colors.black;
+            break;
+        }
+
+        
+
+        if (resData[i].changes){
+          calendarItem.title = this.moodService.getChangeType(resData[i].makeChanges) + " Change";
+        }
+        else {
+          calendarItem.title = "No Change"
+        }
+
+
+        console.log(calendarItem);
+        this.events.push(calendarItem);
+
+
+      }
+      this.eventsLoaded = Promise.resolve(true);
+    });;
+  }
+
+  editChangeOrMood(){
+    this.editMood = true;
+  }
+
+  saveEdit(){
+    console.log(this.editedObj);
+    this.editMood = false;
+    let item: any = this.events.find(i => i.id === this.editedObj.id);
+    let resObj = this.data.find(i => i._id === this.editedObj.id);
+
+    resObj.mood = this.editedObj.mood;
+
+    //sets the mood type
+    switch (this.editedObj.mood) {
+      case -1: 
+        item.mood = "Bad"
+        item.color = colors.red;
+        break;
+      
+      case 0: 
+        item.mood = "Neutral"
+        item.color = colors.yellow;
+        break;
+      
+      case 1: 
+        item.mood = "Good"
+        item.color = colors.blue;
+        break;
+      
+      default: 
+        item.color = colors.black;
+        break;
+    }
+
+    resObj.mood = this.editedObj.mood;
+    resObj.makeChanges = this.editedObj.makeChanges;
+
+
+    //sets the change type and details (if any)
+    if (resObj.changes){
+      item.title = this.moodService.getChangeType(this.editedObj.makeChanges) + " Change";
+      item.details = this.editedObj.details;
+      resObj.details = this.editedObj.details;
+    }
+    else {
+      item.title = "No Change"
+      item.details = "";
+    }
+
+    
+    this.modal.dismissAll();
+    this.ui.showToastMessage('Mood Successfully Changed', "primary");
+
+    
   }
 
 
@@ -265,10 +381,27 @@ export class CalendarComponent implements OnInit {
 
   handleEvent(event: any): void {
     let details = event.details;
-    let action = event.title;
+    let title = event.title;
     let id = event.id;
-    this.modalData = { details, action, id };
+    let mood = event.mood;
+    this.modalData = { details, title, id, mood };
     this.modal.open(this.modalContent, { size: 'lg' });
+
+    let editedObjArray = this.data.filter((data) => data._id === this.modalData.id);
+    let editedObjItem = editedObjArray[0]
+    if(editedObjItem.changes){
+      this.hasChanges = true;
+    }
+    else{
+      this.hasChanges = false;
+    }
+
+    this.editedObj = {
+      id: editedObjItem._id,
+      mood: editedObjItem.mood,
+      makeChanges: editedObjItem.makeChanges,
+      details: editedObjItem.details,
+    };
   }
 
   addEvent(): void {
@@ -303,6 +436,10 @@ export class CalendarComponent implements OnInit {
       
     });
   }
+  editToFalse(){
+    this.editMood = false;
+    this.modal.dismissAll();
+  }
 
   setView(view: CalendarView) {
     this.view = view;
@@ -311,4 +448,11 @@ export class CalendarComponent implements OnInit {
   closeOpenMonthViewDay() {
     this.activeDayIsOpen = false;
   }
+  // testStuff(){
+  //   var date = new Date(this.viewDate), y = date.getFullYear(), m = date.getMonth();
+  //   var firstDay = startOfDay(new Date(y, m, 1)).getTime();
+  //   var lastDay = endOfDay(new Date(y, m + 1, 0)).getTime();
+  //   console.log(firstDay)
+  //   console.log(lastDay)
+  // }
 }

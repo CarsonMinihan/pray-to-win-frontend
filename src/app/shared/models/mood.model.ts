@@ -26,8 +26,9 @@ export class MoodArray extends BackendResponse {
 }
 
 export class UpdateMood {
-  _id: string;
+  id: string;
   mood: number;
-  changes: boolean;
+  makeChanges: number;
   details: string;
 }
+
