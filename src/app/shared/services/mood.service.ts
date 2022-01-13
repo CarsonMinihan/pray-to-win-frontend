@@ -62,6 +62,15 @@ export class MoodService {
       this.httpHeader
     );
   }
+
+  placeholderForNumberOfChanges(date: Number): Observable<MoodArray> {
+    return this.myhttp.post<MoodArray>(
+      this.url + '/mood/placeholder',
+      { date },
+      this.httpHeader
+    )
+  }
+
   getChangeType(x){
     switch (x) {
       case 1:
