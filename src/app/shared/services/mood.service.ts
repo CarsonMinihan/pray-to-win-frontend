@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Mood, MoodArray, MoodObjectFRBK, UpdateMood } from '../models/mood.model';
+import { Mood, MoodArray, MoodObjectFRBK, NumberOfChanges, UpdateMood } from '../models/mood.model';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,20 +11,22 @@ export class MoodService {
   url: string = 'http://localhost:3000';
   moodObjectFRBK: MoodObjectFRBK;
 
-  constructor(private myhttp: HttpClient) { }
+  constructor(private myhttp: HttpClient, public userService: UserService) { }
 
-  httpHeader = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'x-access-token':  localStorage.getItem("UserToken"),
-    }),
-  };
+  // httpHeader = {
+  //   headers: new HttpHeaders({
+  //     'Content-Type': 'application/json',
+  //     'x-access-token':  localStorage.getItem("UserToken"),
+  //   }),
+  // };
+
 
   createMood(newMood: Mood): Observable<MoodObjectFRBK> {
+    let header = this.userService.getHeaderWithToken();
     return this.myhttp.post<MoodObjectFRBK>(
       this.url + '/mood/create',
       newMood,
-      this.httpHeader
+      header
     );
   }
   // createMood(newMood: Mood): void {
@@ -33,41 +36,46 @@ export class MoodService {
   // }
 
   getMoods(): Observable<MoodArray> {
+    let header = this.userService.getHeaderWithToken();
     return this.myhttp.get<MoodArray>(
       this.url + '/mood/read',
-      this.httpHeader
+      header
     )
   }
 
   getMoodsBetween(date1: Number, date2: Number): Observable<MoodArray> {
+    let header = this.userService.getHeaderWithToken();
     return this.myhttp.post<MoodArray>(
       this.url + '/mood/rbd',
       { date1, date2 },
-      this.httpHeader
+      header
     )
   }
 
   updateMood(updateMood: UpdateMood): Observable<MoodObjectFRBK> {
+    let header = this.userService.getHeaderWithToken();
     return this.myhttp.put<MoodObjectFRBK>(
       this.url + '/mood/update',
       updateMood,
-      this.httpHeader
+      header
     );
   }
 
   deleteMood(id): Observable<MoodObjectFRBK> {
+    let header = this.userService.getHeaderWithToken();
     return this.myhttp.post<MoodObjectFRBK>(
       this.url + '/mood/delete',
       { id },
-      this.httpHeader
+      header
     );
   }
 
-  placeholderForNumberOfChanges(date: Number): Observable<MoodArray> {
-    return this.myhttp.post<MoodArray>(
-      this.url + '/mood/placeholder',
-      { date },
-      this.httpHeader
+  numberOfChanges(date1: Number): Observable<NumberOfChanges> {
+    let header = this.userService.getHeaderWithToken();
+    return this.myhttp.post<NumberOfChanges>(
+      this.url + '/mood/year',
+      { date1 },
+      header
     )
   }
 

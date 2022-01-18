@@ -20,11 +20,29 @@ export class UserService {
     }),
   };
 
+
+  // httpHeaderToken = {
+  //   headers: new HttpHeaders({
+      
+  //   }),
+  // };
+
+  getHeaderWithToken(){
+    let httpHeaderToken = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'x-access-token':  localStorage.getItem("UserToken"),
+      }),
+    };
+    return httpHeaderToken
+  }
+
   createUser(newUser: NewUser): Observable<NewUser> {
+    let header = this.getHeaderWithToken();
     return this.myhttp.post<NewUser>(
       this.url + '/auth/create',
       newUser,
-      this.httpHeader
+      header
     );
   }
   // createUser(newUser: NewUser):void {
@@ -40,6 +58,22 @@ export class UserService {
       this.url + '/auth/login',
       user,
       this.httpHeader
+    );
+  }
+
+  refreshUser(): Observable<any> {
+    let header = this.getHeaderWithToken();
+    return this.myhttp.get<any>(
+      this.url + '/auth/refresh',
+      header
+    );
+  }
+
+  logoutUser(): Observable<any> {
+    let header = this.getHeaderWithToken();
+    return this.myhttp.get<any>(
+      this.url + '/auth/logout',
+      header
     );
   }
 

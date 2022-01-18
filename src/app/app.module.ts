@@ -19,6 +19,7 @@ import { AuthGuard } from './shared/services/authservices/auth.guard';
 import { AuthguardService } from './shared/services/authservices/authguard.service';
 import { ToastContainerComponent } from './components/toast-container/toast-container.component';
 import { MoodInfoComponent } from './pages/mood-info/mood-info.component';
+import { ChangeListComponent } from './pages/change-list/change-list.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { MoodInfoComponent } from './pages/mood-info/mood-info.component';
     NavbarComponent,
     ToastContainerComponent,
     MoodInfoComponent,
+    ChangeListComponent,
   ],
   imports: [
     BrowserModule,

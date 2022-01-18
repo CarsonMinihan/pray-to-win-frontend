@@ -119,16 +119,24 @@ export class LoginComponent implements OnInit {
   }
 
   loginSubmit(userData): void {
-    this.myUserService.loginUser(userData).subscribe((res) => {
-      console.log(res);
-      if (res.success) this.ui.showToastMessage(res.message);
-      if (res.data.token) {
-        localStorage.setItem('UserToken', res.data.token);
-        this.router.navigate(['/journal']);
+    this.myUserService.loginUser(userData).subscribe(
+      (res) => {
+        console.log(res);
+        if (res.success) this.ui.showToastMessage(res.message);
+        if (res.data.token) {
+          localStorage.setItem('UserToken', res.data.token);
+          this.router.navigate(['/journal']);
+        }
+      },
+      (res) => {
+        console.log(res.error);
+        if (!res.error.success && res.error.message) {
+          let message = 'Error: ' + res.error.message;
+          this.ui.showToastMessage(message, 'danger');
+        } else {
+          this.ui.showToastMessage('Error: with Authentication.', 'danger');
+        }
       }
-    },
-    (error) => {
-      this.ui.showToastMessage('Username or Password is incorrect', "danger");
-    });
+    );
   }
 }

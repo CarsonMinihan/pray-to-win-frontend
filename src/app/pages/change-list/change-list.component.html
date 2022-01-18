@@ -1,0 +1,39 @@
+<div *ngIf = "eventsLoaded | async">
+    <div class="row">
+        <p class="totalTag">You Have Submitted {{ numOfDays }} Moods in The Past Year</p>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <img class="changeimg" src="../../../assets/images/diet-change-img.png">
+            <p class="imgcaption">You Have Had {{ numOfDiet }} Diet Changes</p>
+        </div>
+        <div class="col-4">
+            <img class="changeimg" src="../../../assets/images/routine-change-img.png">
+            <p class="imgcaption">You Have Had {{ numOfRoutine }} Routine Changes</p>
+        </div>
+        <div class="col-4">
+            <img class="changeimg" src="../../../assets/images/exercise-change-img.png">
+            <p class="imgcaption">You Have Had {{ numOfExercise }} Exercise Changes</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <img class="changeimg" src="../../../assets/images/sleep-change-img.png">
+            <p class="imgcaption">You Have Had {{ numOfSleep }} Sleep Changes</p>
+        </div>
+        <div class="col-4">
+            <img class="changeimg" src="../../../assets/images/hygiene-change-img.png">
+            <p class="imgcaption">You Have Had {{ numOfHygiene }} Hygiene Changes</p>
+        </div>
+        <div class="col-4">
+            <img class="changeimg" src="../../../assets/images/social-change-img.png">
+            <p class="imgcaption">You Have Had {{ numOfSocial }} Social Changes</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <img class="changeimg" src="../../../assets/images/other-change-img.png">
+            <p class="imgcaption">You Have Had {{ numOfOther }} Other Changes</p>
+        </div>
+    </div>
+</div>

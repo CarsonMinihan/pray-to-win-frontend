@@ -10,6 +10,7 @@ export class Mood {
 
 export class MoodObjectWithId extends Mood {
   _id: string;
+  mId: number;
 }
 
 export class BackendResponse {
@@ -32,27 +33,41 @@ export class UpdateMood {
   details: string;
 }
 
-export class NumberOfChanges {
-  //the numbers are the type of changes
+export class NumberOfChanges extends BackendResponse{
 
-  //1
-  numOfDiet: number;
+  data: {
+      numOfDiet: number;
 
-  //2
-  numOfRoutine: number;
+      numOfRoutine: number;
 
-  //3
-  numOfExercise: number;
+      numOfExercise: number;
 
-  //4
-  numOfSleep: number;
+      numOfSleep: number;
 
-  //5
-  numOfHygiene: number;
+      numOfHygiene: number;
 
-  //6
-  numOfSocial: number;
+      numOfSocial: number;
 
-  //7
-  numOfOther: number;
+      numOfOther: number;
+
+      numOfDays: number;
+
+      persents: {
+        diet: number;
+
+        routine: number;
+
+        exercise: number;
+
+        sleep: number;
+
+        hygiene: number;
+
+        social: number;
+
+        other: number;
+      }
+  }
+
+ 
 }
