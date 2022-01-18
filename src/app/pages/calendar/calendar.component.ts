@@ -162,63 +162,6 @@ export class CalendarComponent implements OnInit {
       }
       this.eventsLoaded = Promise.resolve(true);
     });;
-    // this.moodService.getMoods().subscribe((res) => {
-    //   let resData = res.data;
-      
-      
-    //   for (let i = 0; i < resData.length; i++) {
-    //     this.data.push(resData[i]);
-    //     let calendarItem = {
-    //       start: new Date(resData[i].date),
-    //       title: "",
-    //       color: colors.customColor,
-    //       mood: "",
-    //       details: resData[i].details,
-    //       id: resData[i]._id,
-    //       changes: true
-    //     }
-
-    //     calendarItem.changes = resData[i].changes;
-
-    //     switch (resData[i].mood) {
-    //       case -1: 
-    //         calendarItem.mood = "Bad"
-    //         calendarItem.color = colors.red;
-    //         break;
-          
-    //       case 0: 
-    //         calendarItem.mood = "Neutral"
-    //         calendarItem.color = colors.yellow;
-    //         break;
-          
-    //       case 1: 
-    //         calendarItem.mood = "Good"
-    //         calendarItem.color = colors.blue;
-    //         break;
-          
-    //       default: 
-    //         calendarItem.color = colors.black;
-    //         break;
-    //     }
-
-        
-
-    //     if (resData[i].changes){
-    //       calendarItem.title = this.moodService.getChangeType(resData[i].makeChanges) + " Change";
-    //     }
-    //     else {
-    //       calendarItem.title = "No Change"
-    //     }
-
-
-    //     console.log(calendarItem);
-    //     this.events.push(calendarItem);
-
-
-    //   }
-    //   this.eventsLoaded = Promise.resolve(true);
-    // });;
-    // console.log(this.data);
   }
 
   getMoodsForOneMonth(){
@@ -366,24 +309,6 @@ export class CalendarComponent implements OnInit {
     }
   }
 
-  // eventTimesChanged({
-  //   event,
-  //   newStart,
-  //   newEnd,
-  // }: CalendarEventTimesChangedEvent): void {
-  //   this.events = this.events.map((iEvent) => {
-  //     if (iEvent === event) {
-  //       return {
-  //         ...event,
-  //         start: newStart,
-  //         end: newEnd,
-  //       };
-  //     }
-  //     return iEvent;
-  //   });
-  //   this.handleEvent('Dropped or resized', event);
-  // }
-
   handleEvent(event: any): void {
     let details = event.details;
     let title = event.title;
@@ -453,11 +378,4 @@ export class CalendarComponent implements OnInit {
   closeOpenMonthViewDay() {
     this.activeDayIsOpen = false;
   }
-  // testStuff(){
-  //   var date = new Date(this.viewDate), y = date.getFullYear(), m = date.getMonth();
-  //   var firstDay = startOfDay(new Date(y, m, 1)).getTime();
-  //   var lastDay = endOfDay(new Date(y, m + 1, 0)).getTime();
-  //   console.log(firstDay)
-  //   console.log(lastDay)
-  // }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UiService } from 'src/app/shared/services/ui.service';
+import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,7 +10,7 @@ import { UiService } from 'src/app/shared/services/ui.service';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(public nav: UiService, private router: Router,) { }
+  constructor(public ui: UiService, private router: Router, public userService: UserService) { }
 
   ngOnInit(): void {
   }
@@ -17,7 +18,21 @@ export class NavbarComponent implements OnInit {
     //
     //Add Logout Function to backend
     //
-    localStorage.clear();
-    location.reload();
+    this.userService.logoutUser().subscribe( 
+    res => {
+      console.log(res);
+      if(res.success){
+        this.ui.showToastMessage('Successfully Logged Out');
+        localStorage.clear();
+        location.reload();
+      }
+    },
+    res => {
+      console.log(res);
+      if(!res.error.success && res.error.message) {
+        this.ui.showToastMessage('Error with Logout', 'danger');
+      }
+    });
+    
   }
 }
