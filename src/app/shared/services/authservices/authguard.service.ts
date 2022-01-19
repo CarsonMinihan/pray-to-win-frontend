@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { UiService } from '../ui.service';
 import { UserService } from '../user.service';
 
@@ -7,9 +8,10 @@ import { UserService } from '../user.service';
 })
 export class AuthguardService {
 
-  constructor(public ui: UiService,public userService: UserService) { }
+  constructor(public ui: UiService,public userService: UserService, private router: Router, private nav: UiService) { }
 
   gettoken(){  
+    //checks if they have a token and if it is valid, if it is it will refresh the token
     if(!!localStorage.getItem("UserToken")){
       this.userService.refreshUser().subscribe( 
         res => {
@@ -22,7 +24,10 @@ export class AuthguardService {
         },
         res => {
           if(!res.error.success && res.error.message) {
-            this.ui.showToastMessage('Error: Please log back in', 'danger');
+            this.ui.showToastMessage('Please log back in', 'danger');
+            localStorage.clear();
+            this.nav.hide();
+            this.router.navigate(['/login']);
           }
         });
     }

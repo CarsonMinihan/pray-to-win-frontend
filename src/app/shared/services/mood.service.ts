@@ -1,4 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Mood, MoodArray, MoodObjectFRBK, NumberOfChanges, UpdateMood } from '../models/mood.model';
@@ -8,7 +10,7 @@ import { UserService } from './user.service';
   providedIn: 'root'
 })
 export class MoodService {
-  url: string = 'http://localhost:3000';
+  url: string = environment.apiUrl;
   moodObjectFRBK: MoodObjectFRBK;
 
   constructor(private myhttp: HttpClient, public userService: UserService) { }

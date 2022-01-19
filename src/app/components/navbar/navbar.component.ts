@@ -23,8 +23,7 @@ export class NavbarComponent implements OnInit {
       console.log(res);
       if(res.success){
         this.ui.showToastMessage('Successfully Logged Out');
-        localStorage.clear();
-        location.reload();
+        
       }
     },
     res => {
@@ -33,6 +32,9 @@ export class NavbarComponent implements OnInit {
         this.ui.showToastMessage('Error with Logout', 'danger');
       }
     });
+    
+    localStorage.clear();
+    location.reload();
     
   }
 }
