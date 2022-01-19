@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { NewUser } from '../models/new-user.model';
 import { ReturningUser } from '../models/returning-user.model';
 
@@ -10,7 +11,7 @@ import { ReturningUser } from '../models/returning-user.model';
 export class UserService {
   newUserData: NewUser;
   returningUserData: ReturningUser;
-  url: string = 'http://localhost:3000';
+  url: string = environment.apiUrl;
 
   constructor(private myhttp: HttpClient) {}
 
@@ -38,11 +39,10 @@ export class UserService {
   }
 
   createUser(newUser: NewUser): Observable<NewUser> {
-    let header = this.getHeaderWithToken();
     return this.myhttp.post<NewUser>(
       this.url + '/auth/create',
       newUser,
-      header
+      this.httpHeader
     );
   }
   // createUser(newUser: NewUser):void {
