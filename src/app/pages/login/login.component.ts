@@ -76,7 +76,14 @@ export class LoginComponent implements OnInit {
         this.myUserService.createUser(newUserData).subscribe(
           (res: any) => {
             console.log(res);
-            if (res.success) this.ui.showToastMessage(res.message);
+            if (res.success) {
+              this.ui.showToastMessage(res.message);
+              let userData: ReturningUser = {
+                username: this.userFormData.username,
+                password: this.userFormData.password,
+              };
+              this.loginSubmit(userData);
+            }
           },
           (error) => {
             this.ui.showToastMessage(
