@@ -72,20 +72,22 @@ export class LoginComponent implements OnInit {
         password: this.userFormData.password,
         email: this.userFormData.email,
       };
-      if (this.userFormData.password == this.userFormData.confirmPassword){
-      this.myUserService.createUser(newUserData).subscribe((res: any) => {
-        console.log(res);
-        if (res.success) this.ui.showToastMessage(res.message);
-      },
-      (error) => {
-        this.ui.showToastMessage('make sure all fields are filled', "danger");
-      });
-      
+      if (this.userFormData.password == this.userFormData.confirmPassword) {
+        this.myUserService.createUser(newUserData).subscribe(
+          (res: any) => {
+            console.log(res);
+            if (res.success) this.ui.showToastMessage(res.message);
+          },
+          (error) => {
+            this.ui.showToastMessage(
+              'make sure all fields are filled',
+              'danger'
+            );
+          }
+        );
+      } else {
+        this.ui.showToastMessage("Passwords don't match", 'danger');
       }
-      else{
-        this.ui.showToastMessage("Passwords don't match", "danger");
-      }
-
     } else {
       console.log('LOGGING IN');
       let userData: ReturningUser = {
@@ -125,6 +127,9 @@ export class LoginComponent implements OnInit {
         if (res.success) this.ui.showToastMessage(res.message);
         if (res.data.token) {
           localStorage.setItem('UserToken', res.data.token);
+          // 30 minutes is 1800000
+          let expiration = Date.now() + 3000000;
+          localStorage.setItem('tokenExpiration', expiration.toString());
           this.router.navigate(['/journal']);
         }
       },
