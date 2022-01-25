@@ -111,17 +111,7 @@ export class LoginComponent implements OnInit {
     return of(this.userFormData.password == this.userFormData.confirmPassword);
   }
 
-  signUpSubmit(userData) {
-    if (
-      userData.email &&
-      userData.name &&
-      userData.password &&
-      userData.username
-    ) {
-    } else {
-      this.emptyfield = true;
-    }
-  }
+
 
   toggleCreate() {
     this.createAccount = !this.createAccount;
