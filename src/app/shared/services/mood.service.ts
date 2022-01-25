@@ -15,13 +15,6 @@ export class MoodService {
 
   constructor(private myhttp: HttpClient, public userService: UserService) { }
 
-  // httpHeader = {
-  //   headers: new HttpHeaders({
-  //     'Content-Type': 'application/json',
-  //     'x-access-token':  localStorage.getItem("UserToken"),
-  //   }),
-  // };
-
 
   createMood(newMood: Mood): Observable<MoodObjectFRBK> {
     let header = this.userService.getHeaderWithToken();
@@ -31,11 +24,7 @@ export class MoodService {
       header
     );
   }
-  // createMood(newMood: Mood): void {
-  //   console.log(
-  //     this.httpHeader, newMood
-  //   );
-  // }
+
 
   getMoods(): Observable<MoodArray> {
     let header = this.userService.getHeaderWithToken();

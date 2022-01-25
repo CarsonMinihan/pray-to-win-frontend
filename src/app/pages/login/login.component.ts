@@ -55,13 +55,10 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.nav.hide();
-    this.$checkPasswords().subscribe((data) => {
-      console.log(data);
-    });
   }
 
   // this handles both LOGIN & CREATE
+  // this part checks if you are making an account or logging in
   handleForm() {
     if (this.createAccount) {
       console.log('CREATING ACCOUNT');
@@ -82,6 +79,8 @@ export class LoginComponent implements OnInit {
                 username: this.userFormData.username,
                 password: this.userFormData.password,
               };
+
+              // after account is created it will then run the login function with that new account
               this.loginSubmit(userData);
             }
           },
@@ -95,6 +94,8 @@ export class LoginComponent implements OnInit {
       } else {
         this.ui.showToastMessage("Passwords don't match", 'danger');
       }
+
+      // if you are logging in the it will run the code below
     } else {
       console.log('LOGGING IN');
       let userData: ReturningUser = {
@@ -105,18 +106,13 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  $checkPasswords(): Observable<boolean> {
-    console.log(this.userFormData.password + ' IS PASS');
-
-    return of(this.userFormData.password == this.userFormData.confirmPassword);
-  }
-
 
 
   toggleCreate() {
     this.createAccount = !this.createAccount;
   }
 
+  // this is the code that will actually log you in and assign you user token and the expiration of the token to your local storage
   loginSubmit(userData): void {
     this.myUserService.loginUser(userData).subscribe(
       (res) => {
