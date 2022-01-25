@@ -21,12 +21,8 @@ export class UserService {
     }),
   };
 
-
-  // httpHeaderToken = {
-  //   headers: new HttpHeaders({
-      
-  //   }),
-  // };
+  // this function creates a header for requests with your user token attached so the backend knows it's you
+  // the backend is also checking you ip address to see if it's you or just someone who got a hold of your token
 
   getHeaderWithToken(){
     let httpHeaderToken = {
@@ -45,13 +41,7 @@ export class UserService {
       this.httpHeader
     );
   }
-  // createUser(newUser: NewUser):void {
-  //   console.log(newUser);
-  //   console.log(newUser.name);
-  //   console.log(newUser.email);
-  //   console.log(newUser.username);
-  //   console.log(newUser.password);
-  // }
+
 
   loginUser(user: ReturningUser): Observable<any> {
     return this.myhttp.post<ReturningUser>(
@@ -61,6 +51,7 @@ export class UserService {
     );
   }
 
+  // this is what allow you to refresh you token on the front so it doesn't expire
   refreshUser(): Observable<any> {
     let header = this.getHeaderWithToken();
     return this.myhttp.get<any>(
@@ -77,8 +68,4 @@ export class UserService {
     );
   }
 
-  // loginUser(user: ReturningUser):void {
-  //   console.log(user.username);
-  //   console.log(user.password);
-  // }
 }

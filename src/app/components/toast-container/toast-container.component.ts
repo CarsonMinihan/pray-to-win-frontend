@@ -7,6 +7,11 @@ import { UiService } from 'src/app/shared/services/ui.service';
   styleUrls: ['./toast-container.component.scss'],
 })
 export class ToastContainerComponent implements OnInit {
+  //
+  // this component is for pop up error and success messages
+  //
+
+
   constructor(private ui: UiService) {}
   toast: boolean;
   toastMessage: string;

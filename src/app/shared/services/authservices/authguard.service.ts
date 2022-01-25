@@ -15,7 +15,8 @@ export class AuthguardService {
   ) {}
 
   gettoken() {
-    //checks if they have a token and if it is valid, if it is it will refresh the token if the set experatioon time is passed on the front end
+    //checks if they have a token and if it is valid, if it is it will refresh the token if the set experatioon time is 
+    //passed on the front end
     if (!!localStorage.getItem('UserToken')) {
       if (Date.now() >= parseInt(localStorage.getItem('tokenExpiration'))) {
         this.userService.refreshUser().subscribe(
