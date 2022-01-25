@@ -103,7 +103,11 @@ export class CalendarComponent implements OnInit {
   ngOnInit(): void {
     this.ui.show();
     var date = new Date(this.viewDate), y = date.getFullYear(), m = date.getMonth();
+    
+    //gets first day of the month
     var firstDay = startOfDay(new Date(y, m, 1)).getTime();
+
+    //gets last day of month
     var lastDay = endOfDay(new Date(y, m + 1, 0)).getTime();
 
     this.moodService.getMoodsBetween(firstDay, lastDay).subscribe((res) => {
