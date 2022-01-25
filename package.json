@@ -25,6 +25,7 @@
     "angularx-flatpickr": "^6.6.0",
     "calendar-utils": "^0.8.5",
     "date-fns": "^2.26.0",
+    "dotenv": "^14.3.0",
     "flatpickr": "^4.6.9",
     "positioning": "^2.0.1",
     "rxjs": "~6.6.0",
