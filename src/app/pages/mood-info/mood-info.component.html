@@ -1,1 +1,13 @@
-<p>mood-info works!</p>
+<div class="moodInfoContainer">
+    <div class="moodOverDays">
+        <div class="row">
+            <img *ngIf="good" class="emoteImg col-3" src="../../../assets/images/smile-good.png">
+            <img *ngIf="neutral" class="emoteImg col-3" src="../../../assets/images/neutral-face.png">
+            <img *ngIf="bad" class="emoteImg col-3" src="../../../assets/images/frown-sad.png">  
+        </div>
+        <div class="row">
+            <p class="emotecaption">Your mood has been mostly {{ mood }} in the past 30 days</p>
+        </div> 
+    </div>
+    
+</div>
