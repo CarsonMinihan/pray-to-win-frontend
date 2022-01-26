@@ -1,6 +1,5 @@
 import {
   Component,
-  ChangeDetectionStrategy,
   ViewChild,
   TemplateRef,
   OnInit,
@@ -8,27 +7,19 @@ import {
 import {
   startOfDay,
   endOfDay,
-  subDays,
-  addDays,
-  endOfMonth,
-  isSameDay,
-  isSameMonth,
-  addHours,
 } from 'date-fns';
-import { GroupedObservable, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {
   CalendarEvent,
-  CalendarEventAction,
-  CalendarEventTimesChangedEvent,
   CalendarView,
 } from 'angular-calendar';
 import { UiService } from 'src/app/shared/services/ui.service';
 import { MoodService } from 'src/app/shared/services/mood.service';
-import { CalendarEventActionsComponent } from 'angular-calendar/modules/common/calendar-event-actions.component';
+
 import { Router } from '@angular/router';
-import { MoodArray, MoodObjectWithId, UpdateMood } from 'src/app/shared/models/mood.model';
-import { stringify } from 'querystring';
+import { MoodObjectWithId, UpdateMood } from 'src/app/shared/models/mood.model';
+
 
 const colors: any = {
   red: {
@@ -338,22 +329,7 @@ export class CalendarComponent implements OnInit {
     };
   }
 
-  addEvent(): void {
-    this.events = [
-      ...this.events,
-      {
-        title: 'New event',
-        start: startOfDay(new Date()),
-        end: endOfDay(new Date()),
-        color: colors.red,
-        draggable: true,
-        resizable: {
-          beforeStart: true,
-          afterEnd: true,
-        },
-      },
-    ];
-  }
+
 
   delete() {
     console.log(this.modalData.id);

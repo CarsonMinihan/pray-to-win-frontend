@@ -71,3 +71,7 @@ export class NumberOfChanges extends BackendResponse{
 
  
 }
+
+export class AvgMood extends BackendResponse {
+  data: number
+}

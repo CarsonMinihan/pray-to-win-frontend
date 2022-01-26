@@ -1,16 +1,12 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { UiService } from 'src/app/shared/services/ui.service';
 import { UserService } from 'src/app/shared/services/user.service';
 import { NewUser } from 'src/app/shared/models/new-user.model';
 import { AuthUser } from 'src/app/shared/models/auth-user.model';
 import { ReturningUser } from 'src/app/shared/models/returning-user.model';
-import { Observable, of } from 'rxjs';
 import {
   trigger,
-  state,
   style,
   animate,
   transition,
@@ -47,7 +43,6 @@ export class LoginComponent implements OnInit {
   // @ViewChild('confirmpassword', {static: true}) confirmpassword: ElementRef;
 
   constructor(
-    private modalService: NgbModal,
     private router: Router,
     public nav: UiService,
     public myUserService: UserService,

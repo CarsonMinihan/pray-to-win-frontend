@@ -35,6 +35,15 @@ export class ChangeListComponent implements OnInit {
       this.numOfOther = res.data.numOfOther;
       this.numOfDays = res.data.numOfDays;
       
+    },
+    (res) => {
+      console.log(res.error);
+      if (!res.error.success && res.error.message) {
+        let message = 'Error: ' + res.error.message;
+        this.ui.showToastMessage(message, 'danger');
+      } else {
+        this.ui.showToastMessage('Error: failed to load', 'danger');
+      }
     });
     this.eventsLoaded = Promise.resolve(true);
   }

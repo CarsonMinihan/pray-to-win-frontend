@@ -3,7 +3,7 @@ import { environment } from 'src/environments/environment';
 
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Mood, MoodArray, MoodObjectFRBK, NumberOfChanges, UpdateMood } from '../models/mood.model';
+import { AvgMood, Mood, MoodArray, MoodObjectFRBK, NumberOfChanges, UpdateMood } from '../models/mood.model';
 import { UserService } from './user.service';
 
 @Injectable({
@@ -66,6 +66,14 @@ export class MoodService {
     return this.myhttp.post<NumberOfChanges>(
       this.url + '/mood/year',
       { date1 },
+      header
+    )
+  }
+
+  avgMoodWeek(): Observable<AvgMood>{
+    let header = this.userService.getHeaderWithToken();
+    return this.myhttp.get<AvgMood>(
+      this.url + '/mood/week',
       header
     )
   }
