@@ -8,3 +8,7 @@ My team consisted of 3 people , and for the project I was the lead designer and 
 this frontend won't work unless the backend is also running
 to get to the backend go here:
 https://github.com/bethel-school-of-technology/pray-to-win-backend
+
+to run the frontend code type "ng serve --o" in your teminal while on the file
+
+to run the backend code type "nodemon server.js" in another teminal while on the file
