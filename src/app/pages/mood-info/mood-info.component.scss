@@ -22,6 +22,16 @@
     height: 500px;
 }
 
+.homeBtn{
+    background: white;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    border-radius: 25px;
+    font-size: 15px;
+    text-align: center;
+    align-items: center;
+}
+
 .moodOverDays {
     position: relative;
     top: 50%;
