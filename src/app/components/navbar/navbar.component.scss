@@ -29,7 +29,8 @@ h1 {
   }
 
   @media (min-width:768px) {
-    .mrButton {
+    .mrButton,
+    .logoutBtn {
       float: right;
     }
     h1 {

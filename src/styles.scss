@@ -72,5 +72,17 @@ body {
 }
 
 .mrButton:hover {
-  background: #ff6f6f;
+  background: rgb(148, 148, 148);
+}
+
+.logoutBtn {
+  background: #ffffff;
+  border: 0.5px solid #000000;
+  border-radius: 11px;
+  padding: 6px 16px;
+  margin: 0 12px;
+}
+
+.logoutBtn:hover {
+  background: rgb(255, 103, 103);
 }
